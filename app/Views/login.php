@@ -116,7 +116,7 @@
         <input
             type="text"
             name="number"
-            maxlength="9"
+            maxlength="10"
             placeholder="034123456"
             value="<?= old('number') ?>"
         >

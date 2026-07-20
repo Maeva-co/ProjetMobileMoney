@@ -28,3 +28,14 @@ in APPPATH/Controllers/Home.php on line 9.
  5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
  6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
  7 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 07:53:57 --> ErrorException: Undefined variable $userModel
+[Method: POST, Route: login]
+in APPPATH/Controllers/UsersController.php on line 19.
+ 1 APPPATH/Controllers/UsersController.php(19): CodeIgniter\Debug\Exceptions->errorHandler()
+ 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\UsersController->login()
+ 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+ 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')

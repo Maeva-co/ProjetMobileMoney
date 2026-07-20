@@ -16,14 +16,14 @@ class UsersModel extends Model {
     protected $validationRules = [
         'number' => [
             'label' => 'Numéro de téléphone',
-            'rules' => 'required|regex_match[/^[0-9]{9}$/]'
+            'rules' => 'required|regex_match[/^[0-9]{10}$/]'
         ]
     ];
 
     protected $validationMessages = [
         'number' => [
             'required'    => 'Veuillez entrer votre numéro.',
-            'regex_match' => 'Le numéro doit contenir exactement 9 chiffres.'
+            'regex_match' => 'Le numéro doit contenir exactement 10 chiffres.'
         ]
     ];
 
