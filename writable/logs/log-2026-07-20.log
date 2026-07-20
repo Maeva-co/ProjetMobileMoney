@@ -12,3 +12,311 @@ in APPPATH/Models/UserModel.php on line 6.
  9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
 10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 11 SYSTEMPATH/rewrite.php(44): require_once('/home/elie/S4/Mr Rojo/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:13:55 --> TypeError: CodeIgniter\Router\RouteCollection::processArrayCallableSyntax(): Return value must be of type string, array returned
+[Method: GET, Route: /]
+in SYSTEMPATH/Router/RouteCollection.php on line 1606.
+ 1 SYSTEMPATH/Router/RouteCollection.php(1457): CodeIgniter\Router\RouteCollection->processArrayCallableSyntax()
+ 2 SYSTEMPATH/Router/RouteCollection.php(1052): CodeIgniter\Router\RouteCollection->create()
+ 3 APPPATH/Config/Routes.php(11): CodeIgniter\Router\RouteCollection->get()
+ 4 SYSTEMPATH/Router/RouteCollection.php(339): require('/opt/lampp/htdocs/S4/ProjetMobileMoney/app/Config/Routes.php')
+ 5 SYSTEMPATH/CodeIgniter.php(818): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 6 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:14:55 --> TypeError: CodeIgniter\Router\RouteCollection::processArrayCallableSyntax(): Return value must be of type string, array returned
+[Method: GET, Route: /]
+in SYSTEMPATH/Router/RouteCollection.php on line 1606.
+ 1 SYSTEMPATH/Router/RouteCollection.php(1457): CodeIgniter\Router\RouteCollection->processArrayCallableSyntax()
+ 2 SYSTEMPATH/Router/RouteCollection.php(1052): CodeIgniter\Router\RouteCollection->create()
+ 3 APPPATH/Config/Routes.php(11): CodeIgniter\Router\RouteCollection->get()
+ 4 SYSTEMPATH/Router/RouteCollection.php(339): require('/opt/lampp/htdocs/S4/ProjetMobileMoney/app/Config/Routes.php')
+ 5 SYSTEMPATH/CodeIgniter.php(818): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 6 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:14:56 --> TypeError: CodeIgniter\Router\RouteCollection::processArrayCallableSyntax(): Return value must be of type string, array returned
+[Method: GET, Route: /]
+in SYSTEMPATH/Router/RouteCollection.php on line 1606.
+ 1 SYSTEMPATH/Router/RouteCollection.php(1457): CodeIgniter\Router\RouteCollection->processArrayCallableSyntax()
+ 2 SYSTEMPATH/Router/RouteCollection.php(1052): CodeIgniter\Router\RouteCollection->create()
+ 3 APPPATH/Config/Routes.php(11): CodeIgniter\Router\RouteCollection->get()
+ 4 SYSTEMPATH/Router/RouteCollection.php(339): require('/opt/lampp/htdocs/S4/ProjetMobileMoney/app/Config/Routes.php')
+ 5 SYSTEMPATH/CodeIgniter.php(818): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 6 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:14:57 --> TypeError: CodeIgniter\Router\RouteCollection::processArrayCallableSyntax(): Return value must be of type string, array returned
+[Method: GET, Route: /]
+in SYSTEMPATH/Router/RouteCollection.php on line 1606.
+ 1 SYSTEMPATH/Router/RouteCollection.php(1457): CodeIgniter\Router\RouteCollection->processArrayCallableSyntax()
+ 2 SYSTEMPATH/Router/RouteCollection.php(1052): CodeIgniter\Router\RouteCollection->create()
+ 3 APPPATH/Config/Routes.php(11): CodeIgniter\Router\RouteCollection->get()
+ 4 SYSTEMPATH/Router/RouteCollection.php(339): require('/opt/lampp/htdocs/S4/ProjetMobileMoney/app/Config/Routes.php')
+ 5 SYSTEMPATH/CodeIgniter.php(818): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 6 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:14:58 --> TypeError: CodeIgniter\Router\RouteCollection::processArrayCallableSyntax(): Return value must be of type string, array returned
+[Method: GET, Route: /]
+in SYSTEMPATH/Router/RouteCollection.php on line 1606.
+ 1 SYSTEMPATH/Router/RouteCollection.php(1457): CodeIgniter\Router\RouteCollection->processArrayCallableSyntax()
+ 2 SYSTEMPATH/Router/RouteCollection.php(1052): CodeIgniter\Router\RouteCollection->create()
+ 3 APPPATH/Config/Routes.php(11): CodeIgniter\Router\RouteCollection->get()
+ 4 SYSTEMPATH/Router/RouteCollection.php(339): require('/opt/lampp/htdocs/S4/ProjetMobileMoney/app/Config/Routes.php')
+ 5 SYSTEMPATH/CodeIgniter.php(818): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 6 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:14:58 --> TypeError: CodeIgniter\Router\RouteCollection::processArrayCallableSyntax(): Return value must be of type string, array returned
+[Method: GET, Route: /]
+in SYSTEMPATH/Router/RouteCollection.php on line 1606.
+ 1 SYSTEMPATH/Router/RouteCollection.php(1457): CodeIgniter\Router\RouteCollection->processArrayCallableSyntax()
+ 2 SYSTEMPATH/Router/RouteCollection.php(1052): CodeIgniter\Router\RouteCollection->create()
+ 3 APPPATH/Config/Routes.php(11): CodeIgniter\Router\RouteCollection->get()
+ 4 SYSTEMPATH/Router/RouteCollection.php(339): require('/opt/lampp/htdocs/S4/ProjetMobileMoney/app/Config/Routes.php')
+ 5 SYSTEMPATH/CodeIgniter.php(818): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 6 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:14:59 --> TypeError: CodeIgniter\Router\RouteCollection::processArrayCallableSyntax(): Return value must be of type string, array returned
+[Method: GET, Route: /]
+in SYSTEMPATH/Router/RouteCollection.php on line 1606.
+ 1 SYSTEMPATH/Router/RouteCollection.php(1457): CodeIgniter\Router\RouteCollection->processArrayCallableSyntax()
+ 2 SYSTEMPATH/Router/RouteCollection.php(1052): CodeIgniter\Router\RouteCollection->create()
+ 3 APPPATH/Config/Routes.php(11): CodeIgniter\Router\RouteCollection->get()
+ 4 SYSTEMPATH/Router/RouteCollection.php(339): require('/opt/lampp/htdocs/S4/ProjetMobileMoney/app/Config/Routes.php')
+ 5 SYSTEMPATH/CodeIgniter.php(818): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 6 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:14:59 --> TypeError: CodeIgniter\Router\RouteCollection::processArrayCallableSyntax(): Return value must be of type string, array returned
+[Method: GET, Route: /]
+in SYSTEMPATH/Router/RouteCollection.php on line 1606.
+ 1 SYSTEMPATH/Router/RouteCollection.php(1457): CodeIgniter\Router\RouteCollection->processArrayCallableSyntax()
+ 2 SYSTEMPATH/Router/RouteCollection.php(1052): CodeIgniter\Router\RouteCollection->create()
+ 3 APPPATH/Config/Routes.php(11): CodeIgniter\Router\RouteCollection->get()
+ 4 SYSTEMPATH/Router/RouteCollection.php(339): require('/opt/lampp/htdocs/S4/ProjetMobileMoney/app/Config/Routes.php')
+ 5 SYSTEMPATH/CodeIgniter.php(818): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 6 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:15:31 --> TypeError: CodeIgniter\Router\RouteCollection::processArrayCallableSyntax(): Return value must be of type string, array returned
+[Method: GET, Route: /]
+in SYSTEMPATH/Router/RouteCollection.php on line 1606.
+ 1 SYSTEMPATH/Router/RouteCollection.php(1457): CodeIgniter\Router\RouteCollection->processArrayCallableSyntax()
+ 2 SYSTEMPATH/Router/RouteCollection.php(1052): CodeIgniter\Router\RouteCollection->create()
+ 3 APPPATH/Config/Routes.php(11): CodeIgniter\Router\RouteCollection->get()
+ 4 SYSTEMPATH/Router/RouteCollection.php(339): require('/opt/lampp/htdocs/S4/ProjetMobileMoney/app/Config/Routes.php')
+ 5 SYSTEMPATH/CodeIgniter.php(818): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 6 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:15:32 --> TypeError: CodeIgniter\Router\RouteCollection::processArrayCallableSyntax(): Return value must be of type string, array returned
+[Method: GET, Route: /]
+in SYSTEMPATH/Router/RouteCollection.php on line 1606.
+ 1 SYSTEMPATH/Router/RouteCollection.php(1457): CodeIgniter\Router\RouteCollection->processArrayCallableSyntax()
+ 2 SYSTEMPATH/Router/RouteCollection.php(1052): CodeIgniter\Router\RouteCollection->create()
+ 3 APPPATH/Config/Routes.php(11): CodeIgniter\Router\RouteCollection->get()
+ 4 SYSTEMPATH/Router/RouteCollection.php(339): require('/opt/lampp/htdocs/S4/ProjetMobileMoney/app/Config/Routes.php')
+ 5 SYSTEMPATH/CodeIgniter.php(818): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 6 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:15:32 --> TypeError: CodeIgniter\Router\RouteCollection::processArrayCallableSyntax(): Return value must be of type string, array returned
+[Method: GET, Route: /]
+in SYSTEMPATH/Router/RouteCollection.php on line 1606.
+ 1 SYSTEMPATH/Router/RouteCollection.php(1457): CodeIgniter\Router\RouteCollection->processArrayCallableSyntax()
+ 2 SYSTEMPATH/Router/RouteCollection.php(1052): CodeIgniter\Router\RouteCollection->create()
+ 3 APPPATH/Config/Routes.php(11): CodeIgniter\Router\RouteCollection->get()
+ 4 SYSTEMPATH/Router/RouteCollection.php(339): require('/opt/lampp/htdocs/S4/ProjetMobileMoney/app/Config/Routes.php')
+ 5 SYSTEMPATH/CodeIgniter.php(818): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 6 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:15:32 --> TypeError: CodeIgniter\Router\RouteCollection::processArrayCallableSyntax(): Return value must be of type string, array returned
+[Method: GET, Route: /]
+in SYSTEMPATH/Router/RouteCollection.php on line 1606.
+ 1 SYSTEMPATH/Router/RouteCollection.php(1457): CodeIgniter\Router\RouteCollection->processArrayCallableSyntax()
+ 2 SYSTEMPATH/Router/RouteCollection.php(1052): CodeIgniter\Router\RouteCollection->create()
+ 3 APPPATH/Config/Routes.php(11): CodeIgniter\Router\RouteCollection->get()
+ 4 SYSTEMPATH/Router/RouteCollection.php(339): require('/opt/lampp/htdocs/S4/ProjetMobileMoney/app/Config/Routes.php')
+ 5 SYSTEMPATH/CodeIgniter.php(818): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 6 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:15:32 --> TypeError: CodeIgniter\Router\RouteCollection::processArrayCallableSyntax(): Return value must be of type string, array returned
+[Method: GET, Route: /]
+in SYSTEMPATH/Router/RouteCollection.php on line 1606.
+ 1 SYSTEMPATH/Router/RouteCollection.php(1457): CodeIgniter\Router\RouteCollection->processArrayCallableSyntax()
+ 2 SYSTEMPATH/Router/RouteCollection.php(1052): CodeIgniter\Router\RouteCollection->create()
+ 3 APPPATH/Config/Routes.php(11): CodeIgniter\Router\RouteCollection->get()
+ 4 SYSTEMPATH/Router/RouteCollection.php(339): require('/opt/lampp/htdocs/S4/ProjetMobileMoney/app/Config/Routes.php')
+ 5 SYSTEMPATH/CodeIgniter.php(818): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 6 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:15:33 --> TypeError: CodeIgniter\Router\RouteCollection::processArrayCallableSyntax(): Return value must be of type string, array returned
+[Method: GET, Route: /]
+in SYSTEMPATH/Router/RouteCollection.php on line 1606.
+ 1 SYSTEMPATH/Router/RouteCollection.php(1457): CodeIgniter\Router\RouteCollection->processArrayCallableSyntax()
+ 2 SYSTEMPATH/Router/RouteCollection.php(1052): CodeIgniter\Router\RouteCollection->create()
+ 3 APPPATH/Config/Routes.php(11): CodeIgniter\Router\RouteCollection->get()
+ 4 SYSTEMPATH/Router/RouteCollection.php(339): require('/opt/lampp/htdocs/S4/ProjetMobileMoney/app/Config/Routes.php')
+ 5 SYSTEMPATH/CodeIgniter.php(818): CodeIgniter\Router\RouteCollection->loadRoutes()
+ 6 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:15:56 --> Error: Class "App\Controllers\Client\BaseController" not found
+[Method: GET, Route: /]
+in APPPATH/Controllers/client/UsersController.php on line 8.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(315): include_once()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 3 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 4 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass()
+ 5 SYSTEMPATH/Router/Router.php(792): class_exists()
+ 6 SYSTEMPATH/Router/Router.php(230): CodeIgniter\Router\Router->processRouteAttributes()
+ 7 SYSTEMPATH/CodeIgniter.php(829): CodeIgniter\Router\Router->handle()
+ 8 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:15:57 --> Error: Class "App\Controllers\Client\BaseController" not found
+[Method: GET, Route: /]
+in APPPATH/Controllers/client/UsersController.php on line 8.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(315): include_once()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 3 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 4 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass()
+ 5 SYSTEMPATH/Router/Router.php(792): class_exists()
+ 6 SYSTEMPATH/Router/Router.php(230): CodeIgniter\Router\Router->processRouteAttributes()
+ 7 SYSTEMPATH/CodeIgniter.php(829): CodeIgniter\Router\Router->handle()
+ 8 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:15:57 --> Error: Class "App\Controllers\Client\BaseController" not found
+[Method: GET, Route: /]
+in APPPATH/Controllers/client/UsersController.php on line 8.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(315): include_once()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 3 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 4 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass()
+ 5 SYSTEMPATH/Router/Router.php(792): class_exists()
+ 6 SYSTEMPATH/Router/Router.php(230): CodeIgniter\Router\Router->processRouteAttributes()
+ 7 SYSTEMPATH/CodeIgniter.php(829): CodeIgniter\Router\Router->handle()
+ 8 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:15:57 --> Error: Class "App\Controllers\Client\BaseController" not found
+[Method: GET, Route: /]
+in APPPATH/Controllers/client/UsersController.php on line 8.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(315): include_once()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 3 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 4 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass()
+ 5 SYSTEMPATH/Router/Router.php(792): class_exists()
+ 6 SYSTEMPATH/Router/Router.php(230): CodeIgniter\Router\Router->processRouteAttributes()
+ 7 SYSTEMPATH/CodeIgniter.php(829): CodeIgniter\Router\Router->handle()
+ 8 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:15:58 --> Error: Class "App\Controllers\Client\BaseController" not found
+[Method: GET, Route: /]
+in APPPATH/Controllers/client/UsersController.php on line 8.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(315): include_once()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 3 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 4 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass()
+ 5 SYSTEMPATH/Router/Router.php(792): class_exists()
+ 6 SYSTEMPATH/Router/Router.php(230): CodeIgniter\Router\Router->processRouteAttributes()
+ 7 SYSTEMPATH/CodeIgniter.php(829): CodeIgniter\Router\Router->handle()
+ 8 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:15:58 --> Error: Class "App\Controllers\Client\BaseController" not found
+[Method: GET, Route: /]
+in APPPATH/Controllers/client/UsersController.php on line 8.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(315): include_once()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 3 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 4 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass()
+ 5 SYSTEMPATH/Router/Router.php(792): class_exists()
+ 6 SYSTEMPATH/Router/Router.php(230): CodeIgniter\Router\Router->processRouteAttributes()
+ 7 SYSTEMPATH/CodeIgniter.php(829): CodeIgniter\Router\Router->handle()
+ 8 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 09:15:58 --> Error: Class "App\Controllers\Client\BaseController" not found
+[Method: GET, Route: /]
+in APPPATH/Controllers/client/UsersController.php on line 8.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(315): include_once()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 3 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 4 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass()
+ 5 SYSTEMPATH/Router/Router.php(792): class_exists()
+ 6 SYSTEMPATH/Router/Router.php(230): CodeIgniter\Router\Router->processRouteAttributes()
+ 7 SYSTEMPATH/CodeIgniter.php(829): CodeIgniter\Router\Router->handle()
+ 8 SYSTEMPATH/CodeIgniter.php(441): CodeIgniter\CodeIgniter->tryToRouteIt()
+ 9 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+10 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+13 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')

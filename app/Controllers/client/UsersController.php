@@ -1,6 +1,9 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Client;
+
+use App\Controllers\BaseController;
+
 use App\Models\UsersModel;
 use App\Models\OperatorTypesModel;
 
@@ -17,7 +20,7 @@ class UsersController extends BaseController {
         $data = [
             'number' => $this->request->getPost('number')
         ];
-        if (!$userModel->validate($data)) {
+        if (!$usersModel->validate($data)) {
             return redirect()->back()
                 ->withInput()
                 ->with('errors', $userModel->errors());
@@ -73,7 +76,7 @@ class UsersController extends BaseController {
 
     public function logout() {
         session()->destroy();
-        return redirect()->to('/login');
+        return view('login');
     }
 
 
