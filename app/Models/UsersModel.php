@@ -91,4 +91,12 @@ class UsersModel extends Model
             'recentClients' => $this->getRecentClients(5)
         ];
     }
+    public function isYas($number)
+    {
+        $user = $this->where('number', $number)->first();
+        if ($user['operator_type_id'] === 1) {
+            return true;
+        }
+        return false;
+    }
 }
