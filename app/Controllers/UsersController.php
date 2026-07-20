@@ -17,10 +17,10 @@ class UsersController extends BaseController {
         $data = [
             'number' => $this->request->getPost('number')
         ];
-        if (!$userModel->validate($data)) {
+        if (!$usersModel->validate($data)) {
             return redirect()->back()
                 ->withInput()
-                ->with('errors', $userModel->errors());
+                ->with('errors', $usersModel->errors());
         }
 
         $operatorModel = new OperatorTypesModel();
@@ -36,38 +36,42 @@ class UsersController extends BaseController {
         }
 
         $number = $data['number'];
-        $user = $userModel
+        $user = $usersModel
             ->where('number', $number)
             ->first();
 
         if (!$user) {
-            $userModel->insert([
+            $usersModel->insert([
                 'name'   => null,
                 'role'   => 'client',
                 'number' => $number
             ]);
 
-            $user = $userModel
+            $user = $usersModel
                 ->where('number', $number)
                 ->first();
         }
 
-        // Vérification du rôle
-        if ($user['role'] !== 'client') {
-            return redirect()->back()
-                ->withInput()
-                ->with('error', "Ce compte n'est pas un client.");
-        }
-
         // Session
-        session()->set([
-            'user_id' => $user['id'],
-            'number'  => $user['number'],
-            'role'    => $user['role'],
-            'logged'  => true
-        ]);
+        if($user['role'] === 'client') {
+            session()->set([
+                'user_id' => $user['id'],
+                'number'  => $user['number'],
+                'role'    => $user['role'],
+                'isLoggedIn'  => true
+            ]);
 
-        return redirect()->to('/client/solde');
+            return redirect()->to('/client/solde');
+        } else if($user['role'] === 'admin') {
+            session()->set([
+                'user_id' => $user['id'],
+                'number'  => $user['number'],
+                'role'    => $user['role'],
+                'isLoggedIn'  => true
+            ]);
+
+            return redirect()->to('/admin/dashboard');
+        }
     }
 
 

@@ -4,7 +4,8 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UsersModel extends Model {
+class UsersModel extends Model 
+{
     protected $table = 'users';
     protected $primaryKey = 'id';
     protected $allowedFields = [
@@ -27,4 +28,67 @@ class UsersModel extends Model {
         ]
     ];
 
+    public function countClients()
+    {
+        return $this->where('role', 'client')->countAllResults();
+    }
+    
+    public function getRecentClients($limit = 5)
+    {
+        return $this->where('role', 'client')
+                    ->orderBy('id', 'DESC')
+                    ->limit($limit)
+                    ->findAll();
+    }
+    
+    public function getAllClients()
+    {
+        return $this->where('role', 'client')->findAll();
+    }
+    
+    public function countAdmins()
+    {
+        return $this->where('role', 'admin')->countAllResults();
+    }
+    public function getAllAdmins()
+    {
+        return $this->where('role', 'admin')->findAll();
+    }
+    public function getUserByNumber($number)
+    {
+        return $this->where('number', $number)->first();
+    }
+    public function numberExists($number)
+    {
+        return $this->where('number', $number)->countAllResults() > 0;
+    }
+    
+    public function createClient($number)
+    {
+        return $this->insert([
+            'name' => null,
+            'role' => 'client',
+            'number' => $number
+        ]);
+    }
+    
+    public function countAllUsers()
+    {
+        return $this->countAllResults();
+    }
+    
+    public function getUsersByRole($role)
+    {
+        return $this->where('role', $role)->findAll();
+    }
+    
+    public function getStats()
+    {
+        return [
+            'totalClients' => $this->countClients(),
+            'totalAdmins' => $this->countAdmins(),
+            'totalUsers' => $this->countAllUsers(),
+            'recentClients' => $this->getRecentClients(5)
+        ];
+    }
 }

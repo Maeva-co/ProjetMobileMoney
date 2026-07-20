@@ -22,6 +22,7 @@ CREATE TABLE transactions (
     operator_type_id INTEGER NOT NULL,
     transaction_type_id INTEGER NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
+    frais DECIMAL(10, 2) DEFAULT 0,
     idUserReceiver INTEGER NULL,
     transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,
@@ -78,7 +79,7 @@ INSERT INTO transaction_types (type) VALUES
 ('Transfer');
 
 INSERT INTO users (name, role, number) VALUES 
-('Administrator', 'admin', '0340000000');
+('Administrator', 'admin', '0330000000');
 
 INSERT INTO config_frais (minAmount, maxAmount, transaction_type_id, operator_type_id, frais) VALUES
 -- AIRTEL (operator_type_id = 1) - Retrait (transaction_type_id = 2)
