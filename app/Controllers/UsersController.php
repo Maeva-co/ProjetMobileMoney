@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 use App\Models\UsersModel;
+use App\Models\OperatorTypesModel;
+
 
 class UsersController extends BaseController {
 
@@ -15,11 +17,22 @@ class UsersController extends BaseController {
         $data = [
             'number' => $this->request->getPost('number')
         ];
-
         if (!$userModel->validate($data)) {
             return redirect()->back()
                 ->withInput()
                 ->with('errors', $userModel->errors());
+        }
+
+        $operatorModel = new OperatorTypesModel();
+        $prefix = substr($data['number'], 0, 3);
+        $operator = $operatorModel
+            ->where('type', $prefix)
+            ->first();
+
+        if (!$operator) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Cet opérateur téléphonique n\'est pas pris en charge.');
         }
 
         $number = $data['number'];
