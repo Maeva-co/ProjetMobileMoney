@@ -16,5 +16,5 @@ $routes->get('/logout', [UsersController::class, 'logout']);
 $routes->get('/client/solde', [SoldeController::class, 'index']);
 
 $routes->group('admin', ['filter' => 'auth:admin'], function ($routes) {
-    $routes->get('dashboard', 'admin/DashboardController::index');
+    $routes->get('dashboard', 'admin\DashboardController::index');
 });
