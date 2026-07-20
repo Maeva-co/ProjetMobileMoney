@@ -320,6 +320,7 @@ in APPPATH/Controllers/client/UsersController.php on line 8.
 11 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
 12 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 13 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+CRITICAL - 2026-07-20 10:56:07 --> ErrorException: Undefined variable $usersModel
 CRITICAL - 2026-07-20 10:20:54 --> CodeIgniter\View\Exceptions\ViewException: Invalid file: "admin/operators/create.php"
 [Method: GET, Route: admin/operators/create]
 in SYSTEMPATH/Exceptions/FrameworkException.php on line 39.
@@ -421,6 +422,9 @@ in APPPATH/Controllers/client/UsersController.php on line 43.
  5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
  6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
  7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+<<<<<<< HEAD
+ 8 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+=======
  8 SYSTEMPATH/rewrite.php(44): require_once('/home/elie/S4/Mr Rojo/ProjetMobileMoney/public/index.php')
 ERROR - 2026-07-20 10:31:35 --> CHECK constraint failed: type IN ('033', '037')
 in SYSTEMPATH/Database/SQLite3/Connection.php on line 163.
@@ -739,3 +743,4 @@ in SYSTEMPATH/Database/SQLite3/Connection.php on line 163.
 14 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
 15 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
 16 SYSTEMPATH/rewrite.php(44): require_once('/home/elie/S4/Mr Rojo/ProjetMobileMoney/public/index.php')
+>>>>>>> c7472e63db187008bc10ffc9bbb6ef952968c445
