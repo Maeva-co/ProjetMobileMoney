@@ -29,3 +29,10 @@ Systeme de simulation d'operateur de Mobile Money
         - View
             - layouts/client.php: sidebar
             - client/solde.php: affichage 
+
+
+### Cote client: Elie
+- Filter par roles
+  - alias app/Config/Filters.php : 'auth' => \App\Filters\AuthFilter::class,
+- Models des correspondentes avec la base + les methodes
+- Dashboard admin
