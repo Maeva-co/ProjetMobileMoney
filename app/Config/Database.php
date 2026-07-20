@@ -25,7 +25,7 @@ class Database extends Config
      * @var array<string, mixed>
      */
     public array $default = [
-           'database'    => 'writable/mobileMoney.db',
+           'database'    => WRITEPATH . 'mobileMoney.db',
            'DBDriver'    => 'SQLite3',
            'DBPrefix'    => '',
            'DBDebug'     => true,
@@ -39,7 +39,7 @@ class Database extends Config
                'datetime' => 'Y-m-d H:i:s',
                'time'     => 'H:i:s',
            ],
-       ];
+        ];
 
     //    /**
     //     * Sample database connection for SQLite3.

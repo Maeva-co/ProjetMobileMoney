@@ -1,41 +1,14 @@
-CRITICAL - 2026-07-20 07:28:39 --> TypeError: App\Controllers\Home::index(): Return value must be of type string, CodeIgniter\HTTP\RedirectResponse returned
+CRITICAL - 2026-07-20 08:05:41 --> Error: Class "codeIgniter\Model" not found
 [Method: GET, Route: /]
-in APPPATH/Controllers/Home.php on line 9.
- 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\Home->index()
- 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
- 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
- 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
- 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
- 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
- 7 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
-CRITICAL - 2026-07-20 07:28:41 --> TypeError: App\Controllers\Home::index(): Return value must be of type string, CodeIgniter\HTTP\RedirectResponse returned
-[Method: GET, Route: /]
-in APPPATH/Controllers/Home.php on line 9.
- 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\Home->index()
- 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
- 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
- 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
- 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
- 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
- 7 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
-CRITICAL - 2026-07-20 07:28:41 --> TypeError: App\Controllers\Home::index(): Return value must be of type string, CodeIgniter\HTTP\RedirectResponse returned
-[Method: GET, Route: /]
-in APPPATH/Controllers/Home.php on line 9.
- 1 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\Home->index()
- 2 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
- 3 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
- 4 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
- 5 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
- 6 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
- 7 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
-CRITICAL - 2026-07-20 07:53:57 --> ErrorException: Undefined variable $userModel
-[Method: POST, Route: login]
-in APPPATH/Controllers/UsersController.php on line 19.
- 1 APPPATH/Controllers/UsersController.php(19): CodeIgniter\Debug\Exceptions->errorHandler()
- 2 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\UsersController->login()
- 3 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
- 4 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
- 5 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
- 6 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
- 7 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
- 8 SYSTEMPATH/rewrite.php(44): require_once('/opt/lampp/htdocs/S4/ProjetMobileMoney/public/index.php')
+in APPPATH/Models/UserModel.php on line 6.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(315): include_once()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 3 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 4 APPPATH/Controllers/admin/DashboardController.php(11): CodeIgniter\Autoloader\Autoloader->loadClass()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\admin\DashboardController->index()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/home/elie/S4/Mr Rojo/ProjetMobileMoney/public/index.php')
