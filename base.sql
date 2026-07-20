@@ -8,7 +8,7 @@ CREATE TABLE users (
 CREATE TABLE oprator_types (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(50) NOT NULL UNIQUE,
-    type TEXT NOT NULL CHECK(type IN ('033', '037'))
+    type VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE transaction_types (

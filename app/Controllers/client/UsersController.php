@@ -16,11 +16,11 @@ class UsersController extends BaseController {
 
 
     public function login() {
-        $userModel = new UsersModel();
+        $usersModel = new UsersModel();
         $data = [
             'number' => $this->request->getPost('number')
         ];
-        if (!$userModel->validate($data)) {
+        if (!$usersModel->validate($data)) {
             return redirect()->back()
                 ->withInput()
                 ->with('errors', $usersModel->errors());
@@ -64,7 +64,7 @@ class UsersController extends BaseController {
                 'isLoggedIn'  => true
             ]);
 
-            return redirect()->to('/client/solde');
+            return redirect()->to(base_url('client/solde'));
         } else if($user['role'] === 'admin') {
             session()->set([
                 'user_id' => $user['id'],
@@ -73,7 +73,7 @@ class UsersController extends BaseController {
                 'isLoggedIn'  => true
             ]);
 
-            return redirect()->to('/admin/dashboard');
+            return redirect()->to(base_url('admin/dashboard'));
         }
     }
 

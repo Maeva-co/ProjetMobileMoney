@@ -23,6 +23,19 @@ class ConfigFraisModel extends Model
     {
         return $this->where('isActive', 1)->findAll();
     }
+
+        public function getConfigWithDetails()
+    {
+        return $this->select('
+                config_frais.*,
+                oprator_types.name as operator_name,
+                transaction_types.type as transaction_type
+            ')
+            ->join('oprator_types', 'oprator_types.id = config_frais.operator_type_id')
+            ->join('transaction_types', 'transaction_types.id = config_frais.transaction_type_id')
+            ->where('config_frais.isActive', 1)
+            ->findAll();
+    }
     
     // Configuration par opérateur et type
     public function getConfigByOperatorAndType($operatorId, $typeId)
