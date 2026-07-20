@@ -8,7 +8,7 @@ class OperatorTypesModel extends Model
 {
     protected $table = 'oprator_types';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['name', 'type'];
+    protected $allowedFields = ['name', 'type', 'commission'];
     protected $useTimestamps = false;
     
     public function getOperatorByType($type)
