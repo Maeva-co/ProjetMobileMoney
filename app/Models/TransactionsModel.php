@@ -15,6 +15,7 @@ class TransactionsModel extends Model
         'operator_type_id',
         'transaction_type_id',
         'amount',
+        'frais',
         'idUserReceiver',
         'transaction_date'
     ];
