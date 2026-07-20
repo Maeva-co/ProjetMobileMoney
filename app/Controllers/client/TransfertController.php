@@ -9,6 +9,7 @@ use App\Models\SoldeMouvementModel;
 use App\Models\TransactionTypesModel;
 use App\Models\TransactionsModel;
 use App\Models\UsersModel;
+use App\Models\GainsModel;
 
 class TransfertController extends BaseController {
 
@@ -38,56 +39,47 @@ class TransfertController extends BaseController {
             ]
         ];
 
-        if (! $this->validate($rules)) {
+        if (!$this->validate($rules)) {
             return redirect()->back()
                 ->withInput()
                 ->with('errors', $this->validator->getErrors());
         }
 
-        $userModel = new UsersModel();
-
-        $receiver = $userModel
-            ->where('number', $this->request->getPost('number'))
-            ->first();
-
-        if (! $receiver) {
-            return redirect()->back()
-                ->withInput()
-                ->with('error', "Le numéro entré n'est pas attribué.");
-        }
-
-        if ($receiver['id'] == session()->get('user_id')) {
-            return redirect()->back()
-                ->withInput()
-                ->with('error', "Vous ne pouvez pas effectuer un transfert vers votre propre compte.");
-        }
+        $amount = $this->request->getPost('amount');
+        $receiverNumber = $this->request->getPost('number');
 
         $operatorModel = new OperatorTypesModel();
 
-        $prefix = substr(session()->get('number'), 0, 3);
-
-        $operator = $operatorModel
-            ->where('type', $prefix)
+        $senderOperator = $operatorModel
+            ->where('type', substr(session()->get('number'), 0, 3))
             ->first();
+
+        $receiverOperator = $operatorModel
+            ->where('type', substr($receiverNumber, 0, 3))
+            ->first();
+
+        if (!$receiverOperator) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', "Cet opérateur n'est pas pris en charge.");
+        }
 
         $transactionType = (new TransactionTypesModel())
             ->where('type', 'transfert')
             ->first();
 
-        $amount = $this->request->getPost('amount');
-
         $config = (new ConfigFraisModel())
             ->where('transaction_type_id', $transactionType['id'])
-            ->where('operator_type_id', $operator['id'])
+            ->where('operator_type_id', $senderOperator['id'])
             ->where('minAmount <=', $amount)
             ->where('maxAmount >=', $amount)
             ->where('isActive', 1)
             ->first();
 
-        if (! $config) {
+        if (!$config) {
             return redirect()->back()
                 ->withInput()
-                ->with('error', 'Aucun frais configuré pour ce montant.');
+                ->with('error', 'Aucun frais configuré.');
         }
 
         $frais = $config['frais'];
@@ -102,11 +94,54 @@ class TransfertController extends BaseController {
                 ->with('error', "Solde insuffisant pour ce montant et les frais engendrés.");
         }
 
+        if ($senderOperator['id'] == $receiverOperator['id']) {
+
+            return $this->transfertInterne(
+                $receiverNumber,
+                $amount,
+                $frais,
+                $senderOperator,
+                $transactionType
+            );
+        }
+
+        return $this->transfertInterOperateur(
+            $receiverNumber,
+            $amount,
+            $frais,
+            $senderOperator,
+            $receiverOperator,
+            $transactionType
+        );
+    }
+
+
+
+    private function transfertInterne($receiverNumber, $amount, $frais, $operator, $transactionType) {
+
+        $receiver = (new UsersModel())
+            ->where('number', $receiverNumber)
+            ->first();
+
+        if (!$receiver) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', "Le numéro entré n'est pas attribué.");
+        }
+
+        if ($receiver['id'] == session()->get('user_id')) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', "Vous ne pouvez pas effectuer un transfert vers votre propre compte.");
+        }
+
         $db = \Config\Database::connect();
 
         $db->transStart();
 
-        (new TransactionsModel())->insert([
+        $transactionModel = new TransactionsModel();
+
+        $transactionModel->insert([
             'userId' => session()->get('user_id'),
             'operator_type_id' => $operator['id'],
             'transaction_type_id' => $transactionType['id'],
@@ -114,6 +149,8 @@ class TransfertController extends BaseController {
             'frais' => $frais,
             'idUserReceiver' => $receiver['id']
         ]);
+
+        $soldeModel = new SoldeMouvementModel();
 
         $soldeModel->insert([
             'userId' => session()->get('user_id'),
@@ -135,14 +172,79 @@ class TransfertController extends BaseController {
 
         $db->transComplete();
 
-        if (! $db->transStatus()) {
+        if (!$db->transStatus()) {
             return redirect()->back()
                 ->withInput()
-                ->with('error', "Une erreur est survenue lors du transfert.");
+                ->with('error', "Une erreur est survenue.");
         }
 
         return redirect()->to('/client/solde')
             ->with('success', 'Transfert effectué avec succès.');
     }
-    
+
+
+    private function transfertInterOperateur($receiverNumber, $amount, $frais, $senderOperator, $receiverOperator, $transactionType) {
+
+        $commission = ($amount * $receiverOperator['commission']) / 100;
+
+        $gainAutreOperateur = $amount + $commission;
+
+        $db = \Config\Database::connect();
+
+        $db->transStart();
+
+        $transactionModel = new TransactionsModel();
+
+        $transactionModel->insert([
+            'userId' => session()->get('user_id'),
+            'operator_type_id' => $senderOperator['id'],
+            'transaction_type_id' => $transactionType['id'],
+            'amount' => $amount,
+            'frais' => $frais,
+            'idUserReceiver' => null
+        ]);
+
+        $transactionId = $transactionModel->getInsertID();
+
+        $soldeModel = new SoldeMouvementModel();
+
+        $soldeModel->insert([
+            'userId' => session()->get('user_id'),
+            'type' => 'debit',
+            'amount' => $amount
+        ]);
+
+        $soldeModel->insert([
+            'userId' => session()->get('user_id'),
+            'type' => 'debit',
+            'amount' => $frais
+        ]);
+
+        $gainModel = new GainsModel();
+
+        $gainModel->insert([
+            'transaction_id' => $transactionId,
+            'operator_type_id' => $receiverOperator['id'],
+            'amount' => $gainAutreOperateur
+        ]);
+
+        $gainModel->insert([
+            'transaction_id' => $transactionId,
+            'operator_type_id' => $senderOperator['id'],
+            'amount' => $frais
+        ]);
+
+        $db->transComplete();
+
+        if (!$db->transStatus()) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', "Une erreur est survenue.");
+        }
+
+        return redirect()->to('/client/solde')
+            ->with('success', 'Transfert inter-opérateur effectué avec succès.');
+    }
+
+
 }
