@@ -87,4 +87,19 @@ class ConfigFraisHistoryModel extends Model
         $data['action'] = 'DELETE';
         return $this->insert($data);
     }
+
+    public function getHistoryWithDetails()
+    {
+        return $this->select('
+                config_frais_history.*,
+                users.name as user_name,
+                oprator_types.name as operator_name,
+                transaction_types.type as transaction_type
+            ')
+            ->join('users', 'users.id = config_frais_history.created_by')
+            ->join('oprator_types', 'oprator_types.id = config_frais_history.operator_type_id')
+            ->join('transaction_types', 'transaction_types.id = config_frais_history.transaction_type_id')
+            ->orderBy('change_date', 'DESC')
+            ->findAll();
+    }
 }
