@@ -11,7 +11,8 @@ class UsersModel extends Model
     protected $allowedFields = [
         'name',
         'role',
-        'number'
+        'number',
+        'operator_type_id'
     ];
 
     protected $validationRules = [
@@ -93,8 +94,8 @@ class UsersModel extends Model
     }
     public function isYas($number)
     {
-        $user = $this->where('number', $number)->first();
-        if ($user['operator_type_id'] === 1) {
+        $indicator = substr($number, 0, 3);
+        if ($indicator === '034') {
             return true;
         }
         return false;

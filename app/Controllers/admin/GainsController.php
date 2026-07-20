@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Models\TransactionModel;
 use App\Models\OperatorTypesModel;
+use App\Models\GainsModel;
 
 class GainsController extends BaseController
 {
@@ -12,6 +13,7 @@ class GainsController extends BaseController
     {
         $transactionModel = new TransactionModel();
         $operatorModel = new OperatorTypesModel();
+        $gainsModel = new GainsModel();
         
         // gain total
         $totalGains = $transactionModel
@@ -44,15 +46,11 @@ class GainsController extends BaseController
             ->getRow()
             ->frais ?? 0;
         
-        // gain par operateur
-        $gainsByOperator = $transactionModel
-            ->select('
-                operator_type_id,
-                COUNT(*) as count,
-                SUM(frais) as total_fees
-            ')
-            ->groupBy('operator_type_id')
-            ->findAll();
+        // gain other operateur
+        $gainsTotalOtherOperators = $gainsModel->getGainsTotalOtherOperators(1);
+
+        // gain operateur
+        $gainsOperator = $gainsModel->getGainsTotalByOperator(1);
         
         // gain par type de transaction
         $gainsByType = $transactionModel
@@ -97,9 +95,10 @@ class GainsController extends BaseController
             'todayGains' => $todayGains,
             'monthGains' => $monthGains,
             'yearGains' => $yearGains,
-            'gainsByOperator' => $gainsByOperator,
+            'gainsTotalOtherOperators' => $gainsTotalOtherOperators,
             'gainsByType' => $gainsByType,
             'monthlyGains' => $monthlyGains,
+            'gainsOperator' => $gainsOperator,
             'operators' => $operatorModel->findAll()
         ];
         

@@ -26,28 +26,10 @@ class UsersController extends BaseController {
                 ->with('errors', $usersModel->errors());
         }
 
-        $operatorModel = new OperatorTypesModel();
-        $prefix = substr($data['number'], 0, 3);
-        $operator = $operatorModel
-            ->where('type', $prefix)
-            ->first();
-
-        if (!$operator) {
-            return redirect()->back()
-                ->withInput()
-                ->with('error', 'Cet opérateur téléphonique n\'est pas pris en charge.');
-        }
-
         $number = $data['number'];
         $user = $usersModel
             ->where('number', $number)
             ->first();
-
-        if(!$user) {
-            return redirect()->back()
-                ->withInput()
-                ->with('error', 'Utilisateur non trouvé ou rôle incorrect.');
-        }
 
         if(!$usersModel->isYas($number)) {
             return redirect()->back()
@@ -57,9 +39,10 @@ class UsersController extends BaseController {
 
         if (!$user) {
             $usersModel->insert([
-                'name'   => null,
+                'name'   => 'Client Yas',
                 'role'   => 'client',
-                'number' => $number
+                'number' => $number,
+                'operator_type_id' => 1
             ]);
 
             $user = $usersModel
