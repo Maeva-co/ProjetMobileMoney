@@ -7,6 +7,7 @@ use App\Controllers\client\SoldeController;
 use App\Controllers\client\DepotController;
 use App\Controllers\client\RetraitController;
 use App\Controllers\client\TransfertController;
+use App\Controllers\client\HistoriqueController;
 
 
 /**
@@ -24,6 +25,8 @@ $routes->get('/client/retrait', [RetraitController::class, 'index']);
 $routes->post('/client/retrait', [RetraitController::class, 'store']);
 $routes->get('/client/transfert', [TransfertController::class, 'index']);
 $routes->post('/client/transfert', [TransfertController::class, 'store']);
+$routes->get('/client/historiques', [HistoriqueController::class, 'index']);
+
 
 
 

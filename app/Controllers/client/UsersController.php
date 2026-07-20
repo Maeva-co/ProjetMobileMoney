@@ -16,11 +16,11 @@ class UsersController extends BaseController {
 
 
     public function login() {
-        $userModel = new UsersModel();
+        $usersModel = new UsersModel();
         $data = [
             'number' => $this->request->getPost('number')
         ];
-        if (!$userModel->validate($data)) {
+        if (!$usersModel->validate($data)) {
             return redirect()->back()
                 ->withInput()
                 ->with('errors', $usersModel->errors());
