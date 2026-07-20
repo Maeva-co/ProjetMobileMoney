@@ -43,6 +43,18 @@ class UsersController extends BaseController {
             ->where('number', $number)
             ->first();
 
+        if(!$user) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Utilisateur non trouvé ou rôle incorrect.');
+        }
+
+        if(!$usersModel->isYas($number)) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Cet utilisateur n\'est pas un client Yas.');
+        }
+
         if (!$user) {
             $usersModel->insert([
                 'name'   => null,

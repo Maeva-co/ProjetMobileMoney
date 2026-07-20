@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\ConfigFraisModel;
 use App\Models\ConfigFraisHistoryModel;
 use App\Models\OperatorTypesModel;
-use App\Models\TransactionTypesModel;
+use App\Models\TransactionTypeModel;
 
 class ConfigController extends BaseController
 {
@@ -14,7 +14,7 @@ class ConfigController extends BaseController
     {
         $configModel = new ConfigFraisModel();
         $operatorModel = new OperatorTypesModel();
-        $typeModel = new TransactionTypesModel();
+        $typeModel = new TransactionTypeModel();
         
         $data = [
             'configs' => $configModel->getConfigWithDetails(),
@@ -28,7 +28,7 @@ class ConfigController extends BaseController
     public function create()
     {
         $operatorModel = new OperatorTypesModel();
-        $typeModel = new TransactionTypesModel();
+        $typeModel = new TransactionTypeModel();
         
         $data = [
             'operators' => $operatorModel->findAll(),
@@ -67,7 +67,7 @@ class ConfigController extends BaseController
     {
         $configModel = new ConfigFraisModel();
         $operatorModel = new OperatorTypesModel();
-        $typeModel = new TransactionTypesModel();
+        $typeModel = new TransactionTypeModel();
         
         $data = [
             'config' => $configModel->find($id),
