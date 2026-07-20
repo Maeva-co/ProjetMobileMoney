@@ -28,11 +28,25 @@
 
         <label style="margin-top:20px;display:block;"> Montant (Ar) </label>
 
-        <input
+        <!-- <input
             type="number"
             name="amount"
             value="<?= old('amount') ?>"
-            placeholder="10000">
+            placeholder="10000"> -->
+
+        <div id="numbers-container">
+            <div class="number-row">
+                <input
+                    type="text"
+                    name="numbers[]"
+                    placeholder="034XXXXXXX"
+                    required>
+
+                <button type="button" class="remove">−</button>
+            </div>
+        </div>
+        <button type="button" id="addNumber"> + </button>
+
 
         <div class="checkbox-group">
         <label>
@@ -96,7 +110,27 @@
         margin-top:20px;
     }
 
-
     </style>
+
+    <script>
+        const container = document.getElementById('numbers-container');
+        document.getElementById('addNumber').addEventListener('click', () => {
+            const div = document.createElement('div');
+            div.className = 'number-row';
+            div.innerHTML = `
+                <input type="text" name="numbers[]" required>
+                <button type="button" class="remove">−</button>
+            `;
+            container.appendChild(div);
+        });
+
+        document.addEventListener('click', function(e){
+            if(e.target.classList.contains('remove')){
+                if(document.querySelectorAll('.number-row').length > 1){
+                    e.target.parentElement.remove();
+                }
+            }
+        });
+    </script>
 
 <?= $this->endSection() ?>
