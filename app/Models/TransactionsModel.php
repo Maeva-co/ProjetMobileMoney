@@ -46,6 +46,16 @@ class TransactionsModel extends Model
             ->orderBy('transaction_date', 'DESC')
             ->findAll();
     }
-
+    public function getGainsByOperator($operatorId)
+    {
+        return $this->select('
+                operator_type_id,
+                COUNT(*) as transaction_count,
+                SUM(frais) as total_gains
+            ')
+            ->where('operator_type_id', $operatorId)
+            ->groupBy('operator_type_id')
+            ->first();
+    }
 
 }

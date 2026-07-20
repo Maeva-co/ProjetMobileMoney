@@ -108,19 +108,9 @@
                 </div>
             </div>
 
-            <!-- Commission -->
-            <div class="col-xl-3 col-lg-6 col-md-6">
-                <div class="stat-card">
-                    <div class="stat-label">Commission</div>
-                    <div class="stat-number"><?= number_format($totalCommission ?? 0) ?> Ar</div>
-                </div>
-            </div>
-
         </div>
 
-        <!-- ========================================== -->
         <!-- RECENT TRANSACTIONS -->
-        <!-- ========================================== -->
         <div class="row mb-4">
             <div class="col-12">
                 <div class="table-container">
@@ -128,9 +118,6 @@
                         <h5>
                             Dernières transactions
                         </h5>
-                        <a href="/admin/transactions" class="btn btn-outline-primary btn-sm">
-                            Voir tout
-                        </a>
                     </div>
                     <div class="table-responsive">
                         <table class="table">
@@ -188,9 +175,7 @@
             </div>
         </div>
 
-        <!-- ========================================== -->
         <!-- RECENT CLIENTS & CONFIG -->
-        <!-- ========================================== -->
         <div class="row g-4">
 
             <!-- Recent Clients -->

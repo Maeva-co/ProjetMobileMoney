@@ -11,7 +11,8 @@ class UsersModel extends Model
     protected $allowedFields = [
         'name',
         'role',
-        'number'
+        'number',
+        'operator_type_id'
     ];
 
     protected $validationRules = [
@@ -90,5 +91,13 @@ class UsersModel extends Model
             'totalUsers' => $this->countAllUsers(),
             'recentClients' => $this->getRecentClients(5)
         ];
+    }
+    public function isYas($number)
+    {
+        $indicator = substr($number, 0, 3);
+        if ($indicator === '034') {
+            return true;
+        }
+        return false;
     }
 }

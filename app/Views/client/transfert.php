@@ -34,6 +34,19 @@
             value="<?= old('amount') ?>"
             placeholder="10000">
 
+        <div class="checkbox-group">
+        <label>
+        <input
+            type="checkbox"
+            name="include_retrait_fee"
+            value="1"
+            <?= old('include_retrait_fee') ? 'checked' : '' ?>
+        >
+        Inclure les frais de retrait du destinataire
+    </label>
+</div>
+
+
         <?php if(session()->getFlashdata('errors')) { ?>
             <?php foreach(session()->getFlashdata('errors') as $error) { ?>
                 <div class="error">
@@ -78,6 +91,11 @@
     margin-top:10px;
     color:red;
     }
+
+    .checkbox-group{
+        margin-top:20px;
+    }
+
 
     </style>
 

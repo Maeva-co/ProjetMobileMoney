@@ -3,13 +3,13 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Models\TransactionTypesModel;
+use App\Models\TransactionTypeModel;
 
 class TransactionTypesController extends BaseController
 {
     public function index()
     {
-        $model = new TransactionTypesModel();
+        $model = new TransactionTypeModel();
         $data['types'] = $model->findAll();
         return view('admin/transaction_types/list', $data);
     }
@@ -21,7 +21,7 @@ class TransactionTypesController extends BaseController
 
     public function store()
     {
-        $model = new TransactionTypesModel();
+        $model = new TransactionTypeModel();
         
         $data = [
             'type' => $this->request->getPost('type')
@@ -39,14 +39,14 @@ class TransactionTypesController extends BaseController
 
     public function edit($id)
     {
-        $model = new TransactionTypesModel();
+        $model = new TransactionTypeModel();
         $data['type'] = $model->find($id);
         return view('admin/transaction_types/edit', $data);
     }
 
     public function update($id)
     {
-        $model = new TransactionTypesModel();
+        $model = new TransactionTypeModel();
         
         $data = [
             'type' => $this->request->getPost('type')
@@ -64,7 +64,7 @@ class TransactionTypesController extends BaseController
 
     public function delete($id)
     {
-        $model = new TransactionTypesModel();
+        $model = new TransactionTypeModel();
         $model->delete($id);
         return redirect()->to('/admin/transaction-types')
             ->with('success', 'Type d\'opération supprimé avec succès');
