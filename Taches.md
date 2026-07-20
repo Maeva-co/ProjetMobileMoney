@@ -19,3 +19,13 @@ Systeme de simulation d'operateur de Mobile Money
             - Formulaire + validation: messages si jamais y a un probleme
 
 
+- Page d'affichage de solde
+    - Creation de
+        - SoldeMouvementModel: $tables, $primarykey, $allowedFields
+            - fonction getSolde(user_id)
+            -> solde = somme credit - somme debit
+        - SoldeController: fonction index() -> appelle getSolde, retourne view /client/solde
+        - routes: modification de /client/solde
+        - View
+            - layouts/client.php: sidebar
+            - client/solde.php: affichage 

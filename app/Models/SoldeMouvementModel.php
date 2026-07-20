@@ -55,4 +55,19 @@ class SoldeMouvementModel extends Model
                     ->orderBy('movement_date', 'DESC')
                     ->findAll();
     }
+    public function getSolde(int $userId): float {
+        $result = $this->db->query("
+            SELECT
+                SUM(
+                    CASE
+                        WHEN type = 'credit' THEN amount
+                        ELSE -amount
+                    END
+                ) AS solde
+            FROM solde_mouvement
+            WHERE userId = ?
+        ", [$userId])->getRowArray();
+
+        return $result['solde'] ?? 0;
+    }
 }
