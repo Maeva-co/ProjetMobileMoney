@@ -1,0 +1,14 @@
+CRITICAL - 2026-07-20 08:05:41 --> Error: Class "codeIgniter\Model" not found
+[Method: GET, Route: /]
+in APPPATH/Models/UserModel.php on line 6.
+ 1 SYSTEMPATH/Autoloader/Autoloader.php(315): include_once()
+ 2 SYSTEMPATH/Autoloader/Autoloader.php(295): CodeIgniter\Autoloader\Autoloader->includeFile()
+ 3 SYSTEMPATH/Autoloader/Autoloader.php(271): CodeIgniter\Autoloader\Autoloader->loadInNamespace()
+ 4 APPPATH/Controllers/admin/DashboardController.php(11): CodeIgniter\Autoloader\Autoloader->loadClass()
+ 5 SYSTEMPATH/CodeIgniter.php(951): App\Controllers\admin\DashboardController->index()
+ 6 SYSTEMPATH/CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController()
+ 7 SYSTEMPATH/CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest()
+ 8 SYSTEMPATH/Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH/Boot.php(68): CodeIgniter\Boot::runCodeIgniter()
+10 FCPATH/index.php(59): CodeIgniter\Boot::bootWeb()
+11 SYSTEMPATH/rewrite.php(44): require_once('/home/elie/S4/Mr Rojo/ProjetMobileMoney/public/index.php')

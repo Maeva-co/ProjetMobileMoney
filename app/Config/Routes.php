@@ -1,9 +1,11 @@
 <?php
 
-use CodeIgniter\Router\RouteCollection;
+namespace Config;
 
-/**
- * @var RouteCollection $routes
- */
-$routes->get('/', 'Home::index');
+use CodeIgniter\Config\Services;
 
+$routes = Services::routes();
+
+$routes->group('admin', ['filter' => 'auth:admin'], function ($routes) {
+    $routes->get('dashboard', 'admin/DashboardController::index');
+});
