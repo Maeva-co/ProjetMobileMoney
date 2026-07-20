@@ -2,7 +2,8 @@
 
 namespace Config;
 
-use App\Controllers\UsersController;
+use App\Controllers\client\UsersController;
+use App\Controllers\client\SoldeController;
 
 /**
  * @var RouteCollection $routes
@@ -10,11 +11,9 @@ use App\Controllers\UsersController;
 $routes->get('/', [UsersController::class, 'index']);
 
 $routes->post('/login', [UsersController::class, 'login']);
-$routes->get('/logout', [LoginController::class, 'logout']);
+$routes->get('/logout', [UsersController::class, 'logout']);
 
-$routes->get('/client/solde', function () {
-    return "Bienvenue sur la page Solde";
-});
+$routes->get('/client/solde', [SoldeController::class, 'index']);
 
 $routes->group('admin', ['filter' => 'auth:admin'], function ($routes) {
     $routes->get('dashboard', 'admin/DashboardController::index');
