@@ -46,6 +46,8 @@ class TransfertController extends BaseController {
         }
 
         $amount = $this->request->getPost('amount');
+        $includeRetraitFee = $this->request->getPost('include_retrait_fee') ? true : false;
+
         $receiverNumber = $this->request->getPost('number');
 
         $operatorModel = new OperatorTypesModel();
@@ -84,24 +86,14 @@ class TransfertController extends BaseController {
 
         $frais = $config['frais'];
 
-        $soldeModel = new SoldeMouvementModel();
-
-        $solde = $soldeModel->getSolde(session()->get('user_id'));
-
-        if (($amount + $frais) > $solde) {
-            return redirect()->back()
-                ->withInput()
-                ->with('error', "Solde insuffisant pour ce montant et les frais engendrés.");
-        }
-
         if ($senderOperator['id'] == $receiverOperator['id']) {
-
             return $this->transfertInterne(
                 $receiverNumber,
                 $amount,
                 $frais,
                 $senderOperator,
-                $transactionType
+                $transactionType,
+                $includeRetraitFee
             );
         }
 
@@ -117,7 +109,7 @@ class TransfertController extends BaseController {
 
 
 
-    private function transfertInterne($receiverNumber, $amount, $frais, $operator, $transactionType) {
+    private function transfertInterne($receiverNumber, $amount, $frais, $operator, $transactionType, $includeRetraitFee) {
 
         $receiver = (new UsersModel())
             ->where('number', $receiverNumber)
@@ -135,6 +127,37 @@ class TransfertController extends BaseController {
                 ->with('error', "Vous ne pouvez pas effectuer un transfert vers votre propre compte.");
         }
 
+        $retraitFee = 0;
+        if($includeRetraitFee){
+            $retraitType = (new TransactionTypesModel())
+                ->where('type','retrait')
+                ->first();
+
+            $configRetrait = (new ConfigFraisModel())
+                ->where('transaction_type_id',$retraitType['id'])
+                ->where('operator_type_id',$operator['id'])
+                ->where('minAmount <=',$amount)
+                ->where('maxAmount >=',$amount)
+                ->where('isActive',1)
+                ->first();
+
+            if($configRetrait){
+                $retraitFee = $configRetrait['frais'];
+            }
+
+        }
+
+        $soldeModel = new SoldeMouvementModel();
+        $solde = $soldeModel->getSolde(session()->get('user_id'));
+
+        $total = $amount + $frais + $retraitFee;
+
+        if ($total > $solde) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', "Solde insuffisant pour ce montant et les frais engendrés.");
+        }
+
         $db = \Config\Database::connect();
 
         $db->transStart();
@@ -150,8 +173,6 @@ class TransfertController extends BaseController {
             'idUserReceiver' => $receiver['id']
         ]);
 
-        $soldeModel = new SoldeMouvementModel();
-
         $soldeModel->insert([
             'userId' => session()->get('user_id'),
             'type' => 'debit',
@@ -164,11 +185,25 @@ class TransfertController extends BaseController {
             'amount' => $frais
         ]);
 
+        if ($includeRetraitFee) {
+            $soldeModel->insert([
+                'userId' => session()->get('user_id'),
+                'type' => 'debit',
+                'amount' => $retraitFee
+            ]);
+        }
+
+        $montantReceiver = $amount;
+        if ($includeRetraitFee) {
+            $montantReceiver += $retraitFee;
+        }
+
         $soldeModel->insert([
             'userId' => $receiver['id'],
             'type' => 'credit',
-            'amount' => $amount
+            'amount' => $montantReceiver
         ]);
+
 
         $db->transComplete();
 
@@ -186,11 +221,17 @@ class TransfertController extends BaseController {
     private function transfertInterOperateur($receiverNumber, $amount, $frais, $senderOperator, $receiverOperator, $transactionType) {
 
         $commission = ($amount * $receiverOperator['commission']) / 100;
-
         $gainAutreOperateur = $amount + $commission;
 
-        $db = \Config\Database::connect();
+        $soldeModel = new SoldeMouvementModel();
+        $solde = $soldeModel->getSolde(session()->get('user_id'));
+        if (($amount + $frais) > $solde) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', "Solde insuffisant pour ce montant et les frais engendrés.");
+        }
 
+        $db = \Config\Database::connect();
         $db->transStart();
 
         $transactionModel = new TransactionsModel();
@@ -206,7 +247,6 @@ class TransfertController extends BaseController {
 
         $transactionId = $transactionModel->getInsertID();
 
-        $soldeModel = new SoldeMouvementModel();
 
         $soldeModel->insert([
             'userId' => session()->get('user_id'),
