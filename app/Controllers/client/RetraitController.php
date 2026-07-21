@@ -9,6 +9,7 @@ use App\Models\TransactionTypesModel;
 use App\Models\OperatorTypesModel;
 use App\Models\ConfigFraisModel;
 use App\Models\SoldeMouvementModel;
+use App\Models\GainsModel;
 
 
 class RetraitController extends BaseController {
@@ -101,6 +102,8 @@ class RetraitController extends BaseController {
                 "Solde insuffisant pour ce montant et les frais engendrés.");
         }
 
+        $db = \Config\Database::connect();
+        $db->transStart();
         // Insertion transaction
         $transactionModel = new TransactionsModel();
 
@@ -126,6 +129,22 @@ class RetraitController extends BaseController {
             'type' => 'debit',
             'amount' => $frais
         ]);
+
+        $transactionId = $transactionModel->getInsertID();
+        $gainModel = new GainsModel();
+        $gainModel->insert([
+            'transaction_id' => $transactionId,
+            'operator_type_id' => $operator['id'],
+            'amount' => $frais
+        ]);
+
+        $db->transComplete();
+
+        if (!$db->transStatus()) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', "Une erreur est survenue.");
+        }
 
         return redirect()
             ->to('/client/solde')

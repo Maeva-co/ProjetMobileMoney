@@ -20,14 +20,14 @@ class TransfertController extends BaseController {
 
     public function store() {
         $rules = [
-            'number' => [
-                'label' => 'Numéro',
-                'rules' => 'required|regex_match[/^[0-9]{10}$/]',
-                'errors' => [
-                    'required' => 'Veuillez entrer un numéro.',
-                    'regex_match' => 'Le numéro doit contenir exactement 10 chiffres.'
-                ]
-            ],
+            // 'number' => [
+            //     'label' => 'Numéro',
+            //     'rules' => 'required|regex_match[/^[0-9]{10}$/]',
+            //     'errors' => [
+            //         'required' => 'Veuillez entrer un numéro.',
+            //         'regex_match' => 'Le numéro doit contenir exactement 10 chiffres.'
+            //     ]
+            // ],
             'amount' => [
                 'label' => 'Montant',
                 'rules' => 'required|numeric|greater_than[0]',
@@ -39,6 +39,21 @@ class TransfertController extends BaseController {
             ]
         ];
 
+        $numbers = $this->request->getPost('number');
+
+        if (empty($numbers)) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', 'Veuillez entrer au moins un numéro.');
+        }
+        foreach ($numbers as $number) {
+            if (!preg_match('/^[0-9]{10}$/', $number)) {
+                return redirect()->back()
+                    ->withInput()
+                    ->with('error', "Le numéro {$number} est invalide.");
+            }
+        }
+
         if (!$this->validate($rules)) {
             return redirect()->back()
                 ->withInput()
@@ -48,7 +63,9 @@ class TransfertController extends BaseController {
         $amount = $this->request->getPost('amount');
         $includeRetraitFee = $this->request->getPost('include_retrait_fee') ? true : false;
 
-        $receiverNumber = $this->request->getPost('number');
+        // $receiverNumber = $this->request->getPost('number');
+        $nbReceivers = count($numbers);
+        $receiverNumber = $numbers[0];
 
         $operatorModel = new OperatorTypesModel();
 
@@ -85,6 +102,33 @@ class TransfertController extends BaseController {
         }
 
         $frais = $config['frais'];
+
+
+        if ($nbReceivers > 1) {
+            // Tous les destinataires doivent être du même opérateur
+            foreach ($numbers as $number) {
+                $operator = $operatorModel
+                    ->where('type', substr($number, 0, 3))
+                    ->first();
+
+                if (!$operator || $operator['id'] != $senderOperator['id']) {
+                    return redirect()->back()
+                        ->withInput()
+                        ->with('error', 'Le transfert multiple est uniquement disponible entre clients du même opérateur.');
+                }
+
+            }
+
+            return $this->transfertMultiple(
+                $numbers,
+                $amount,
+                $frais,
+                $senderOperator,
+                $transactionType,
+                $includeRetraitFee
+            );
+        }
+
 
         if ($senderOperator['id'] == $receiverOperator['id']) {
             return $this->transfertInterne(
@@ -185,6 +229,14 @@ class TransfertController extends BaseController {
             'amount' => $frais
         ]);
 
+        $transactionId = $transactionModel->getInsertID();
+        $gainModel = new GainsModel();
+        $gainModel->insert([
+            'transaction_id' => $transactionId,
+            'operator_type_id' => $operator['id'],
+            'amount' => $frais
+        ]);
+
         if ($includeRetraitFee) {
             $soldeModel->insert([
                 'userId' => session()->get('user_id'),
@@ -215,6 +267,152 @@ class TransfertController extends BaseController {
 
         return redirect()->to('/client/solde')
             ->with('success', 'Transfert effectué avec succès.');
+    }
+
+
+    private function transfertMultiple($numbers, $amount, $frais, $operator, $transactionType, $includeRetraitFee) {
+        // Si doublon non souhaité
+        // if (count($numbers) !== count(array_unique($numbers))) {
+        //     return redirect()->back()
+        //         ->withInput()
+        //         ->with('error', 'La liste contient des numéros en double.');
+        // }
+
+        $usersModel = new UsersModel();
+        $receivers = [];
+
+        foreach ($numbers as $number) {
+            $receiver = $usersModel
+                ->where('number', $number)
+                ->first();
+
+            if (!$receiver) {
+                return redirect()->back()
+                    ->withInput()
+                    ->with('error', "Le numéro {$number} n'est pas attribué.");
+            }
+
+            if ($receiver['id'] == session()->get('user_id')) {
+                return redirect()->back()
+                    ->withInput()
+                    ->with('error', "Vous ne pouvez pas effectuer un transfert vers votre propre compte.");
+            }
+
+            $receivers[] = $receiver;
+        }
+
+        $nombreDestinataires = count($receivers);
+        $montantParDestinataire = floor($amount / $nombreDestinataires);
+        $reste = $amount % $nombreDestinataires;
+
+        $retraitFee = 0;
+
+        if ($includeRetraitFee) {
+            $retraitType = (new TransactionTypesModel())
+                ->where('type', 'retrait')
+                ->first();
+
+            $configRetrait = (new ConfigFraisModel())
+                ->where('transaction_type_id', $retraitType['id'])
+                ->where('operator_type_id', $operator['id'])
+                ->where('minAmount <=', $montantParDestinataire)
+                ->where('maxAmount >=', $montantParDestinataire)
+                ->where('isActive', 1)
+                ->first();
+
+            if ($configRetrait) {
+                $retraitFee = $configRetrait['frais'];
+            }
+        }
+
+        $totalRetraitFee = $retraitFee * $nombreDestinataires;
+
+        $soldeModel = new SoldeMouvementModel();
+
+        $solde = $soldeModel->getSolde(session()->get('user_id'));
+
+        $total = $amount + $frais + $totalRetraitFee;
+
+        if ($total > $solde) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', "Solde insuffisant pour ce montant et les frais engendrés.");
+        }
+
+        $db = \Config\Database::connect();
+
+        $db->transStart();
+
+        $transactionModel = new TransactionsModel();
+
+        $transactionModel->insert([
+            'userId' => session()->get('user_id'),
+            'operator_type_id' => $operator['id'],
+            'transaction_type_id' => $transactionType['id'],
+            'amount' => $amount,
+            'frais' => $frais,
+            'idUserReceiver' => null
+        ]);
+
+        $soldeModel->insert([
+            'userId' => session()->get('user_id'),
+            'type' => 'debit',
+            'amount' => $amount
+        ]);
+
+        $soldeModel->insert([
+            'userId' => session()->get('user_id'),
+            'type' => 'debit',
+            'amount' => $frais
+        ]);
+
+        $transactionId = $transactionModel->getInsertID();
+        $gainModel = new GainsModel();
+        $gainModel->insert([
+            'transaction_id' => $transactionId,
+            'operator_type_id' => $operator['id'],
+            'amount' => $frais
+        ]);
+
+        if ($includeRetraitFee) {
+
+            $soldeModel->insert([
+                'userId' => session()->get('user_id'),
+                'type' => 'debit',
+                'amount' => $totalRetraitFee
+            ]);
+
+        }
+
+        foreach ($receivers as $index => $receiver) {
+
+            $montantReceiver = $montantParDestinataire;
+            if ($index == $nombreDestinataires - 1) {
+                $montantReceiver += $reste;
+            }
+
+            if ($includeRetraitFee) {
+                $montantReceiver += $retraitFee;
+            }
+
+            $soldeModel->insert([
+                'userId' => $receiver['id'],
+                'type' => 'credit',
+                'amount' => $montantReceiver
+            ]);
+
+        }
+
+        $db->transComplete();
+
+        if (!$db->transStatus()) {
+            return redirect()->back()
+                ->withInput()
+                ->with('error', "Une erreur est survenue.");
+        }
+
+        return redirect()->to('/client/solde')
+            ->with('success', 'Transfert multiple effectué avec succès.');
     }
 
 

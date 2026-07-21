@@ -20,32 +20,28 @@
     <form method="post" action="<?= site_url('client/transfert') ?>">
         <?= csrf_field() ?>
         <label>Numéro du destinataire</label>
-        <input
-            type="text"
-            name="number"
-            value="<?= old('number') ?>"
-            placeholder="0341234567">
+        <div id="receivers">
+            <div class="receiver-item">
+                <input
+                    type="text"
+                    name="number[]"
+                    value="<?= old('number.0') ?>"
+                    placeholder="0341234567">
+            </div>
+        </div>
+        <div class="receiver-buttons">
+            <button type="button" id="addReceiver">+</button>
+            <button type="button" id="removeReceiver">−</button>
+        </div>
 
         <label style="margin-top:20px;display:block;"> Montant (Ar) </label>
-
-        <!-- <input
+        <input
             type="number"
             name="amount"
             value="<?= old('amount') ?>"
-            placeholder="10000"> -->
+            placeholder="10000">
 
-        <div id="numbers-container">
-            <div class="number-row">
-                <input
-                    type="text"
-                    name="numbers[]"
-                    placeholder="034XXXXXXX"
-                    required>
-
-                <button type="button" class="remove">−</button>
-            </div>
-        </div>
-        <button type="button" id="addNumber"> + </button>
+        
 
 
         <div class="checkbox-group">
@@ -110,25 +106,45 @@
         margin-top:20px;
     }
 
+    .receiver-item{
+        margin-top:10px;
+    }
+
+    .receiver-buttons{
+        display:flex;
+        gap:10px;
+        margin-top:10px;
+    }
+
+    .receiver-buttons button{
+        margin-top:0;
+        width:45px;
+        height:45px;
+        padding:0;
+        font-size:22px;
+        font-weight:bold;
+    }
+
     </style>
 
     <script>
-        const container = document.getElementById('numbers-container');
-        document.getElementById('addNumber').addEventListener('click', () => {
+        const receivers = document.getElementById('receivers');
+        document.getElementById('addReceiver').addEventListener('click', function () {
             const div = document.createElement('div');
-            div.className = 'number-row';
+            div.className = 'receiver-item';
             div.innerHTML = `
-                <input type="text" name="numbers[]" required>
-                <button type="button" class="remove">−</button>
+                <input
+                    type="text"
+                    name="number[]"
+                    placeholder="0341234567">
             `;
-            container.appendChild(div);
+            receivers.appendChild(div);
         });
 
-        document.addEventListener('click', function(e){
-            if(e.target.classList.contains('remove')){
-                if(document.querySelectorAll('.number-row').length > 1){
-                    e.target.parentElement.remove();
-                }
+        document.getElementById('removeReceiver').addEventListener('click', function () {
+            const items = document.querySelectorAll('.receiver-item');
+            if (items.length > 1) {
+                items[items.length - 1].remove();
             }
         });
     </script>
