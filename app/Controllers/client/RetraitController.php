@@ -5,7 +5,7 @@ namespace App\Controllers\Client;
 use App\Controllers\BaseController;
 
 use App\Models\TransactionsModel;
-use App\Models\TransactionTypesModel;
+use App\Models\TransactionTypeModel;
 use App\Models\OperatorTypesModel;
 use App\Models\ConfigFraisModel;
 use App\Models\SoldeMouvementModel;
@@ -62,10 +62,10 @@ class RetraitController extends BaseController {
         }
 
         // Type transaction retrait         
-        $transactionTypeModel = new TransactionTypesModel();
+        $transactionTypeModel = new TransactionTypeModel();
 
         $type = $transactionTypeModel
-            ->where('type', 'retrait')
+            ->where('type', 'Withdrawal')
             ->first();
 
         if (!$type) {

@@ -107,7 +107,7 @@
                         <?php if (!empty($gainsOperator) && count($gainsOperator) > 0): ?>
 
                             <div class="d-flex justify-content-between align-items-center mb-2">
-                                <span><strong><?= $opName ?: 'N/A' ?></strong></span>
+                                <span><strong><?= $gainsOperator['name'] ?: 'N/A' ?></strong></span>
                                 <span><?= number_format($gainsOperator['total_gains'] ?? 0) ?> Ar</span>
                             </div>
                         <?php else: ?>
