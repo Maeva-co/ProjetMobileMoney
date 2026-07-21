@@ -4,7 +4,7 @@ namespace App\Controllers\Client;
 
 use App\Controllers\BaseController;
 use App\Models\TransactionsModel;
-use App\Models\TransactionTypesModel;
+use App\Models\TransactionTypeModel;
 use App\Models\OperatorTypesModel;
 use App\Models\SoldeMouvementModel;
 
@@ -56,9 +56,9 @@ class DepotController extends BaseController {
         }
 
         // Type transaction : depot
-        $transactionTypeModel = new TransactionTypesModel();
+        $transactionTypeModel = new TransactionTypeModel();
         $transactionType = $transactionTypeModel
-            ->where('type','depot')
+            ->where('type','Deposit')
             ->first();
 
         if (!$transactionType) {

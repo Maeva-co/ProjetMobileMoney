@@ -22,8 +22,10 @@ class GainsModel extends Model
         return $this->select('
                 operator_type_id,
                 COUNT(*) as transaction_count,
-                SUM(amount) as total_gains
+                SUM(amount) as total_gains,
+                operator_types.name as name
             ')
+            ->join('operator_types', 'operator_type_id = operator_type_id')
             ->where('operator_type_id', $operatorId)
             ->groupBy('operator_type_id')
             ->first();

@@ -23,44 +23,6 @@ class ConfigFraisHistoryModel extends Model
     protected $useTimestamps = false;
     protected $createdField = 'change_date';
     
-    // Historique d'une configuration
-    public function getHistoryByConfig($configId)
-    {
-        return $this->where('idConfigFrais', $configId)
-                    ->orderBy('change_date', 'DESC')
-                    ->findAll();
-    }
-    
-    // Historique avec détails utilisateur
-    public function getHistoryWithUser()
-    {
-        return $this->select('
-                config_frais_history.*,
-                users.name as user_name,
-                users.number as user_number
-            ')
-            ->join('users', 'users.id = config_frais_history.created_by')
-            ->orderBy('change_date', 'DESC')
-            ->findAll();
-    }
-    
-    // Dernières modifications
-    public function getRecentChanges($limit = 10)
-    {
-        return $this->select('
-                config_frais_history.*,
-                users.name as user_name,
-                transaction_types.type as transaction_type,
-                oprator_types.name as operator_name
-            ')
-            ->join('users', 'users.id = config_frais_history.created_by')
-            ->join('transaction_types', 'transaction_types.id = config_frais_history.transaction_type_id')
-            ->join('oprator_types', 'oprator_types.id = config_frais_history.operator_type_id')
-            ->orderBy('change_date', 'DESC')
-            ->limit($limit)
-            ->findAll();
-    }
-    
     // Enregistrer une action CREATE
     public function logCreate($configId, $data, $userId)
     {
@@ -93,11 +55,11 @@ class ConfigFraisHistoryModel extends Model
         return $this->select('
                 config_frais_history.*,
                 users.name as user_name,
-                oprator_types.name as operator_name,
+                operator_types.name as operator_name,
                 transaction_types.type as transaction_type
             ')
             ->join('users', 'users.id = config_frais_history.created_by')
-            ->join('oprator_types', 'oprator_types.id = config_frais_history.operator_type_id')
+            ->join('operator_types', 'operator_types.id = config_frais_history.operator_type_id')
             ->join('transaction_types', 'transaction_types.id = config_frais_history.transaction_type_id')
             ->orderBy('change_date', 'DESC')
             ->findAll();

@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\ConfigFraisModel;
 use App\Models\OperatorTypesModel;
 use App\Models\SoldeMouvementModel;
-use App\Models\TransactionTypesModel;
+use App\Models\TransactionTypeModel;
 use App\Models\TransactionsModel;
 use App\Models\UsersModel;
 use App\Models\GainsModel;
@@ -83,8 +83,8 @@ class TransfertController extends BaseController {
                 ->with('error', "Cet opérateur n'est pas pris en charge.");
         }
 
-        $transactionType = (new TransactionTypesModel())
-            ->where('type', 'transfert')
+        $transactionType = (new TransactionTypeModel())
+            ->where('type', 'Transfer')
             ->first();
 
         $config = (new ConfigFraisModel())
@@ -173,8 +173,8 @@ class TransfertController extends BaseController {
 
         $retraitFee = 0;
         if($includeRetraitFee){
-            $retraitType = (new TransactionTypesModel())
-                ->where('type','retrait')
+            $retraitType = (new TransactionTypeModel())
+                ->where('type','Withdrawal')
                 ->first();
 
             $configRetrait = (new ConfigFraisModel())
@@ -308,8 +308,8 @@ class TransfertController extends BaseController {
         $retraitFee = 0;
 
         if ($includeRetraitFee) {
-            $retraitType = (new TransactionTypesModel())
-                ->where('type', 'retrait')
+            $retraitType = (new TransactionTypeModel())
+                ->where('type', 'Withdrawal')
                 ->first();
 
             $configRetrait = (new ConfigFraisModel())

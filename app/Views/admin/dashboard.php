@@ -234,13 +234,7 @@
                                     <div class="config-info">
                                         <span class="config-operator">
                                             <?php
-                                            $opName = '';
-                                            foreach ($operators ?? [] as $op) {
-                                                if ($op['id'] == $config['operator_type_id']) {
-                                                    $opName = $op['name'];
-                                                    break;
-                                                }
-                                            }
+                                            $opName = $config['operator_name'];
                                             echo $opName ?: 'N/A';
                                             ?>
                                         </span>

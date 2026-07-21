@@ -42,55 +42,9 @@ class UsersModel extends Model
                     ->findAll();
     }
     
-    public function getAllClients()
-    {
-        return $this->where('role', 'client')->findAll();
-    }
-    
     public function countAdmins()
     {
         return $this->where('role', 'admin')->countAllResults();
-    }
-    public function getAllAdmins()
-    {
-        return $this->where('role', 'admin')->findAll();
-    }
-    public function getUserByNumber($number)
-    {
-        return $this->where('number', $number)->first();
-    }
-    public function numberExists($number)
-    {
-        return $this->where('number', $number)->countAllResults() > 0;
-    }
-    
-    public function createClient($number)
-    {
-        return $this->insert([
-            'name' => null,
-            'role' => 'client',
-            'number' => $number
-        ]);
-    }
-    
-    public function countAllUsers()
-    {
-        return $this->countAllResults();
-    }
-    
-    public function getUsersByRole($role)
-    {
-        return $this->where('role', $role)->findAll();
-    }
-    
-    public function getStats()
-    {
-        return [
-            'totalClients' => $this->countClients(),
-            'totalAdmins' => $this->countAdmins(),
-            'totalUsers' => $this->countAllUsers(),
-            'recentClients' => $this->getRecentClients(5)
-        ];
     }
     public function isYas($number)
     {

@@ -4,10 +4,10 @@ CREATE TABLE users (
     role TEXT NOT NULL CHECK(role IN ('admin', 'client')),
     number VARCHAR(15) NOT NULL UNIQUE,
     operator_type_id INTEGER NULL,
-    FOREIGN KEY (operator_type_id) REFERENCES oprator_types(id) ON DELETE SET NULL
+    FOREIGN KEY (operator_type_id) REFERENCES operator_types(id) ON DELETE SET NULL
 );
 
-CREATE TABLE oprator_types (
+CREATE TABLE operator_types (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name VARCHAR(50) NOT NULL UNIQUE,
     type VARCHAR(50) NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE transactions (
     idUserReceiver INTEGER NULL,
     transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (operator_type_id) REFERENCES oprator_types(id) ON DELETE CASCADE,
+    FOREIGN KEY (operator_type_id) REFERENCES operator_types(id) ON DELETE CASCADE,
     FOREIGN KEY (transaction_type_id) REFERENCES transaction_types(id) ON DELETE CASCADE
 );
 
@@ -51,7 +51,7 @@ CREATE TABLE config_frais (
     frais DECIMAL(10, 2) NOT NULL,
     isActive BOOLEAN DEFAULT 1,
     FOREIGN KEY (transaction_type_id) REFERENCES transaction_types(id) ON DELETE CASCADE,
-    FOREIGN KEY (operator_type_id) REFERENCES oprator_types(id) ON DELETE CASCADE
+    FOREIGN KEY (operator_type_id) REFERENCES operator_types(id) ON DELETE CASCADE
 );
 
 CREATE TABLE config_frais_history (
@@ -68,7 +68,7 @@ CREATE TABLE config_frais_history (
     action TEXT NOT NULL CHECK(action IN ('CREATE', 'UPDATE', 'DELETE')),
     FOREIGN KEY (idConfigFrais) REFERENCES config_frais(id) ON DELETE CASCADE,
     FOREIGN KEY (transaction_type_id) REFERENCES transaction_types(id) ON DELETE CASCADE,
-    FOREIGN KEY (operator_type_id) REFERENCES oprator_types(id) ON DELETE CASCADE,
+    FOREIGN KEY (operator_type_id) REFERENCES operator_types(id) ON DELETE CASCADE,
     FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE CASCADE
 );
 
@@ -78,11 +78,11 @@ CREATE TABLE gains(
     operator_type_id INTEGER NOT NULL,
     amount DECIMAL(10, 2) NOT NULL,
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (operator_type_id) REFERENCES oprator_types(id) ON DELETE CASCADE,
+    FOREIGN KEY (operator_type_id) REFERENCES operator_types(id) ON DELETE CASCADE,
     FOREIGN KEY (transaction_id) REFERENCES transactions(id) ON DELETE CASCADE
 );
 
-INSERT INTO oprator_types (name, type, commissions) VALUES 
+INSERT INTO operator_types (name, type, commissions) VALUES 
 ('Yas', '034', 0.00);
 
 INSERT INTO transaction_types (type) VALUES 

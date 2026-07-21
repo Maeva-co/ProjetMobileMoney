@@ -25,7 +25,7 @@ class TransactionsModel extends Model
         return $this->select("
                 transactions.*,
                 transaction_types.type AS transaction_type,
-                oprator_types.name AS operator_name,
+                operator_types.name AS operator_name,
                 users.name AS receiver_name,
                 users.number AS receiver_number
             ")
@@ -34,8 +34,8 @@ class TransactionsModel extends Model
                 'transaction_types.id = transactions.transaction_type_id'
             )
             ->join(
-                'oprator_types',
-                'oprator_types.id = transactions.operator_type_id'
+                'operator_types',
+                'operator_types.id = transactions.operator_type_id'
             )
             ->join(
                 'users',
@@ -46,16 +46,4 @@ class TransactionsModel extends Model
             ->orderBy('transaction_date', 'DESC')
             ->findAll();
     }
-    public function getGainsByOperator($operatorId)
-    {
-        return $this->select('
-                operator_type_id,
-                COUNT(*) as transaction_count,
-                SUM(frais) as total_gains
-            ')
-            ->where('operator_type_id', $operatorId)
-            ->groupBy('operator_type_id')
-            ->first();
-    }
-
 }

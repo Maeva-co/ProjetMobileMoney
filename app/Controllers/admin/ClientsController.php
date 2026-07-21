@@ -51,10 +51,10 @@ class ClientsController extends BaseController
             ->select('
                 transactions.*,
                 transaction_types.type as transaction_type_name,
-                oprator_types.name as operator_name
+                operator_types.name as operator_name
             ')
             ->join('transaction_types', 'transaction_types.id = transactions.transaction_type_id')
-            ->join('oprator_types', 'oprator_types.id = transactions.operator_type_id')
+            ->join('operator_types', 'operator_types.id = transactions.operator_type_id')
             ->where('transactions.userId', $id)
             ->orderBy('transactions.id', 'DESC')
             ->findAll();

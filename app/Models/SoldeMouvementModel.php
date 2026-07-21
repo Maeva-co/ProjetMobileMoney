@@ -11,25 +11,6 @@ class SoldeMouvementModel extends Model
     protected $allowedFields = ['userId', 'type', 'amount', 'movement_date'];
     protected $useTimestamps = false;
     protected $createdField = 'movement_date';
-    
-    public function credit($userId, $amount)
-    {
-        return $this->insert([
-            'userId' => $userId,
-            'type' => 'credit',
-            'amount' => $amount
-        ]);
-    }
-    
-    public function debit($userId, $amount)
-    {
-        return $this->insert([
-            'userId' => $userId,
-            'type' => 'debit',
-            'amount' => $amount
-        ]);
-    }
-    
     public function getBalance($userId)
     {
         $credits = $this->where('userId', $userId)
@@ -47,13 +28,6 @@ class SoldeMouvementModel extends Model
                        ->amount ?? 0;
         
         return $credits - $debits;
-    }
-    
-    public function getUserMovements($userId)
-    {
-        return $this->where('userId', $userId)
-                    ->orderBy('movement_date', 'DESC')
-                    ->findAll();
     }
     public function getSolde(int $userId): float {
         $result = $this->db->query("

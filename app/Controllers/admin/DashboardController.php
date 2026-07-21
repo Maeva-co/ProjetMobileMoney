@@ -23,7 +23,8 @@ class DashboardController extends BaseController
             'totalCommission' => $transactionModel->getTotalCommission(),
             'recentTransactions' => $transactionModel->getRecentTransactions(10),
             'recentClients' => $userModel->getRecentClients(5),
-            'activeConfigs' => $configModel->getActiveConfigs()
+            'activeConfigs' => $configModel->getActiveGainsWithOperator(),
+            'totalTransactions' => $transactionModel->countAllTransactions()
         ];
         
         return view('admin/dashboard', $data);
