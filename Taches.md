@@ -84,7 +84,7 @@ Systeme de simulation d'operateur de Mobile Money
 - Models des correspondentes avec la base + les methodes
 - Dashboard admin
 
-## Fonctionnalité : Gestion des préfixes opérateurs
+#### Fonctionnalité : Gestion des préfixes opérateurs
 
 - Création du modèle OperatorTypesModel pour gérer la table des opérateurs
 - Création du contrôleur OperatorsController avec les méthodes :
@@ -107,7 +107,7 @@ Systeme de simulation d'operateur de Mobile Money
 
 ---
 
-## Fonctionnalité : Gestion des types d'opérations
+#### Fonctionnalité : Gestion des types d'opérations
 
 - Création du modèle TransactionTypesModel pour gérer la table des types
 - Création du contrôleur TransactionTypesController avec les méthodes :
@@ -130,7 +130,7 @@ Systeme de simulation d'operateur de Mobile Money
 
 ---
 
-## Fonctionnalité : Gestion des barèmes de frais
+#### Fonctionnalité : Gestion des barèmes de frais
 
 - Création du modèle ConfigFraisModel pour gérer la table des configurations
 - Création du modèle ConfigFraisHistoryModel pour gérer l'historique
@@ -159,7 +159,7 @@ Systeme de simulation d'operateur de Mobile Money
 
 ---
 
-## Fonctionnalité : Situation des gains
+#### Fonctionnalité : Situation des gains
 
 - Création du contrôleur GainsController avec la méthode :
   - index() : Afficher la situation des gains
@@ -181,7 +181,7 @@ Systeme de simulation d'operateur de Mobile Money
 
 ---
 
-## Fonctionnalité : Situation des comptes clients
+#### Fonctionnalité : Situation des comptes clients
 
 - Création du contrôleur ClientsController avec les méthodes :
   - index() : Afficher la liste des clients
@@ -197,3 +197,32 @@ Systeme de simulation d'operateur de Mobile Money
 - Récupération des transactions d'un client avec les détails (type, opérateur)
 - Récupération des mouvements de solde d'un client
 
+
+## Version 2
+### Cote Client: Maeva
+- Ajout de la "commission"
+  - TransfertController: modification de la fonction store
+    - ajout calcul de la commission à partir du pourcentage stocké en base
+    - enregistrement du montant + commission pour les autres operateurs
+    - enregistrement du gain
+
+- Ajout de l'option d'inclusion du frais de retrait
+  - modification de transfert.php
+  - TransfertController: modification de store
+    - creation de 2 fonctions
+      - transfertInterne: pour gérer les transferts de même opérateurs
+      - transfertInterOperateur: pour gérer les transferts avec différents opérateurs
+    - store recoit les donnéés et fait des verifications avant d'appeler ces deux fonctions
+
+- Ajout de transfert multiple
+  - modification de transfert.php
+    - input renvoie un tableau
+  - TransfertController:
+    - modification de store
+      - prise en charge de plusieurs destinataires
+      - appel de la fonction transfertMultiple
+    - création de la fonction transfertMultiple
+      - répartition du montant entre les destinataires
+      - calcul des frais de retrait par destinataire
+      - vérification du solde
+      - insertion des mouvements de solde et des gains
