@@ -48,6 +48,7 @@ $routes->group('admin', ['filter' => 'auth:admin'], function ($routes) {
     $routes->post('transaction-types/store', 'admin\TransactionTypesController::store');
     $routes->get('transaction-types/edit/(:num)', 'admin\TransactionTypesController::edit/$1');
     $routes->post('transaction-types/update/(:num)', 'admin\TransactionTypesController::update/$1');
+    $routes->post('transaction-types/update/transfert', 'admin\TransactionTypesController::updateTransfert');
     $routes->get('transaction-types/delete/(:num)', 'admin\TransactionTypesController::delete/$1');
 
     // configuration frais

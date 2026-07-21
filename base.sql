@@ -142,3 +142,6 @@ INSERT INTO config_frais_history (idConfigFrais, minAmount, maxAmount, transacti
 (38, 250001, 500000, 3, 1, 900, 1, 1, 'CREATE'),
 (39, 500001, 1000000, 3, 1, 1500, 1, 1, 'CREATE'),
 (40, 1000001, 2000000, 3, 1, 1800, 1, 1, 'CREATE');
+
+ALTER TABLE transaction_types
+ADD COLUMN promotion INTEGER;

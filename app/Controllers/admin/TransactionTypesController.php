@@ -69,4 +69,14 @@ class TransactionTypesController extends BaseController
         return redirect()->to('/admin/transaction-types')
             ->with('success', 'Type d\'opération supprimé avec succès');
     }
+
+    public function updateTransfert() {
+        $number = $this->request->getPost('number');
+
+        $model = new TransactionTypeModel();
+        $transactionType = $model->where('type', 'Transfer')->first();
+        if ($transactionType['promotion'] != $number) {
+            $model->update();
+        }
+    }
 }

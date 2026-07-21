@@ -226,3 +226,7 @@ Systeme de simulation d'operateur de Mobile Money
       - calcul des frais de retrait par destinataire
       - vérification du solde
       - insertion des mouvements de solde et des gains
+
+# Alea
+- Promotion: sur le frais de transfert
+- Only meme operateur

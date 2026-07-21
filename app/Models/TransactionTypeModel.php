@@ -8,6 +8,6 @@ class TransactionTypeModel extends Model
 {
     protected $table = 'transaction_types';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['type'];
+    protected $allowedFields = ['type', 'promotion'];
     protected $useTimestamps = false;
 }

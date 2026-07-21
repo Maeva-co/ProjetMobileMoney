@@ -87,6 +87,8 @@ class TransfertController extends BaseController {
             ->where('type', 'Transfer')
             ->first();
 
+        $transactionPromotion = $transactionType['promotion'];
+
         $config = (new ConfigFraisModel())
             ->where('transaction_type_id', $transactionType['id'])
             ->where('operator_type_id', $senderOperator['id'])
@@ -102,6 +104,13 @@ class TransfertController extends BaseController {
         }
 
         $frais = $config['frais'];
+
+        if ($transactionPromotion != 0) {
+            if ($senderOperator['id'] == $receiverOperator['id']) {
+                $promotion = ($frais * $transactionPromotion) / 100;
+                $frais = $frais - $promotion;
+            }
+        }
 
 
         if ($nbReceivers > 1) {

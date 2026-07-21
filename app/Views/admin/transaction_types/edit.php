@@ -28,5 +28,13 @@
     </form>
 </div>
 
+
+<h3>Configuration de la promotion de transfert</h3>
+    <form action="admin/transaction-types/update/transfert" method="post">
+        <label> Pourcentage de la promotion </label>
+        <input type="number" name="number" id="number">
+        <button type="submit">Modifier</button>
+    </form>
+
 </body>
 </html>
