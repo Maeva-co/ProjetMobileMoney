@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class UsersModel extends Model 
+class UsersModel extends Model
 {
     protected $table = 'users';
     protected $primaryKey = 'id';
@@ -12,7 +12,8 @@ class UsersModel extends Model
         'name',
         'role',
         'number',
-        'operator_type_id'
+        'operator_type_id',
+        'epargne'
     ];
 
     protected $validationRules = [
@@ -33,15 +34,15 @@ class UsersModel extends Model
     {
         return $this->where('role', 'client')->countAllResults();
     }
-    
+
     public function getRecentClients($limit = 5)
     {
         return $this->where('role', 'client')
-                    ->orderBy('id', 'DESC')
-                    ->limit($limit)
-                    ->findAll();
+            ->orderBy('id', 'DESC')
+            ->limit($limit)
+            ->findAll();
     }
-    
+
     public function countAdmins()
     {
         return $this->where('role', 'admin')->countAllResults();
@@ -53,5 +54,9 @@ class UsersModel extends Model
             return true;
         }
         return false;
+    }
+    public function getEpargne($userId)
+    {
+        return $this->where('id', $userId)->first();
     }
 }

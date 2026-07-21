@@ -10,6 +10,7 @@ use App\Models\TransactionTypeModel;
 use App\Models\TransactionsModel;
 use App\Models\UsersModel;
 use App\Models\GainsModel;
+use App\Models\EpargneModel;
 
 class TransfertController extends BaseController {
 
@@ -195,6 +196,14 @@ class TransfertController extends BaseController {
         $solde = $soldeModel->getSolde(session()->get('user_id'));
 
         $total = $amount + $frais + $retraitFee;
+        // initialisation models
+        $userModel = new UsersModel();
+        $epargneModel = new EpargneModel();
+
+        $userId = session()->get('user_id');
+        $epargnePourcentage = $userModel->getEpargne($userId);
+        $epargneAmount = $amount * ($epargnePourcentage / 100);
+        $toSoldeAmount = $amount - $epargneAmount;
 
         if ($total > $solde) {
             return redirect()->back()
@@ -220,13 +229,18 @@ class TransfertController extends BaseController {
         $soldeModel->insert([
             'userId' => session()->get('user_id'),
             'type' => 'debit',
-            'amount' => $amount
+            'amount' => $toSoldeAmount
         ]);
 
         $soldeModel->insert([
             'userId' => session()->get('user_id'),
             'type' => 'debit',
             'amount' => $frais
+        ]);
+
+        $epargneModel->insert([
+            'userId' => $userId,
+            'amount' => $epargneAmount
         ]);
 
         $transactionId = $transactionModel->getInsertID();

@@ -4,6 +4,7 @@ CREATE TABLE users (
     role TEXT NOT NULL CHECK(role IN ('admin', 'client')),
     number VARCHAR(15) NOT NULL UNIQUE,
     operator_type_id INTEGER NULL,
+    epargne DECIMAL(10, 2) NOT NULL DEFAULT 0,
     FOREIGN KEY (operator_type_id) REFERENCES operator_types(id) ON DELETE SET NULL
 );
 
@@ -82,6 +83,13 @@ CREATE TABLE gains(
     FOREIGN KEY (transaction_id) REFERENCES transactions(id) ON DELETE CASCADE
 );
 
+CREATE TABLE epargne (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    userId INTEGER NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (userId) REFERENCES users(id) ON DELETE CASCADE
+);
+
 INSERT INTO operator_types (name, type, commissions) VALUES 
 ('Yas', '034', 0.00);
 
@@ -90,8 +98,8 @@ INSERT INTO transaction_types (type) VALUES
 ('Withdrawal'),
 ('Transfer');
 
-INSERT INTO users (name, role, number, operator_type_id) VALUES 
-('Administrator', 'admin', '0340000000', 1);
+INSERT INTO users (name, role, number, operator_type_id, epargne) VALUES 
+('Administrator', 'admin', '0340000000', 1, 0.00);
 
 INSERT INTO config_frais (minAmount, maxAmount, transaction_type_id, operator_type_id, frais) VALUES
 -- YAS (operator_type_id = 1) - Retrait (transaction_type_id = 2)

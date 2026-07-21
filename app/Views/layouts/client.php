@@ -6,196 +6,211 @@
     <title><?= $this->renderSection('title') ?> - Mobile Money</title>
 
     <style>
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:Segoe UI,Tahoma,sans-serif;
-        }
-        body{
-            background:#f4f7fb;
-        }
-        .header{
-            height:70px;
-            background:#1565C0;
-            color:white;
-            display:flex;
-            align-items:center;
-            padding:0 30px;
-            font-size:26px;
-            font-weight:bold;
-            box-shadow:0 2px 10px rgba(0,0,0,.12);
-        }
-        .container{
-            display:flex;
-            min-height:calc(100vh - 70px);
-        }
-        .sidebar{
-            width:250px;
-            background:#1565C0;
-            display:flex;
-            flex-direction:column;
-            justify-content:space-between;
-            color:white;
-        }
-        .menu{
-            padding-top:20px;
-        }
-        .menu a{
-            display:flex;
-            align-items:center;
-            gap:15px;
-            padding:18px 25px;
-            color:white;
-            text-decoration:none;
-            transition:.25s;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Segoe UI, Tahoma, sans-serif;
         }
 
-        .menu a:hover{
-            background:#0D47A1;
-            border-left:5px solid white;
-            padding-left:20px;
+        body {
+            background: #f4f7fb;
         }
 
-        .logout{
-            border-top:1px solid rgba(255,255,255,.25);
+        .header {
+            height: 70px;
+            background: #1565C0;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            font-size: 26px;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, .12);
         }
 
-        .logout a{
-            display:flex;
-            align-items:center;
-            gap:15px;
-            padding:18px 25px;
-            color:white;
-            text-decoration:none;
-            transition:.25s;
+        .container {
+            display: flex;
+            min-height: calc(100vh - 70px);
         }
 
-        .logout a:hover{
-            background:#C62828;
+        .sidebar {
+            width: 250px;
+            background: #1565C0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: white;
         }
 
-        .content{
-            flex:1;
-            padding:40px;
+        .menu {
+            padding-top: 20px;
         }
 
-        .card{
-            background:white;
-            border-radius:18px;
-            padding:40px;
-            box-shadow:0 5px 20px rgba(0,0,0,.08);
-            min-height:500px;
+        .menu a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 25px;
+            color: white;
+            text-decoration: none;
+            transition: .25s;
         }
 
-        h1{
-            color:#1565C0;
-            margin-bottom:10px;
+        .menu a:hover {
+            background: #0D47A1;
+            border-left: 5px solid white;
+            padding-left: 20px;
         }
 
-        p{
-            color:#666;
-            margin-bottom:35px;
+        .logout {
+            border-top: 1px solid rgba(255, 255, 255, .25);
         }
 
+        .logout a {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 25px;
+            color: white;
+            text-decoration: none;
+            transition: .25s;
+        }
+
+        .logout a:hover {
+            background: #C62828;
+        }
+
+        .content {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 18px;
+            padding: 40px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
+            min-height: 500px;
+        }
+
+        h1 {
+            color: #1565C0;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 35px;
+        }
     </style>
 
 </head>
 
 <body>
 
-<header class="header">
+    <header class="header">
 
-    Mobile Money
+        Mobile Money
 
-</header>
+    </header>
 
-<div class="container">
+    <div class="container">
 
-    <aside class="sidebar">
+        <aside class="sidebar">
 
-        <div class="menu">
+            <div class="menu">
 
-            <a href="<?= site_url('client/solde') ?>">
+                <a href="<?= site_url('client/solde') ?>">
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 16 16">
-                    <path d="M8 3l6 5v5H2V8l6-5z"/>
-                </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 16 16">
+                        <path d="M8 3l6 5v5H2V8l6-5z" />
+                    </svg>
 
-                Voir le solde
+                    Voir le solde
 
-            </a>
+                </a>
+                <a href="<?= site_url('client/epargne') ?>">
 
-            <a href="<?= site_url('client/depot') ?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 16 16">
+                        <path d="M8 3l6 5v5H2V8l6-5z" />
+                    </svg>
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 16 16">
-                    <path d="M8 1v14M1 8h14" stroke="white" stroke-width="2"/>
-                </svg>
+                    Configurer mon epargne
 
-                Faire un dépôt
+                </a>
 
-            </a>
+                <a href="<?= site_url('client/depot') ?>">
 
-            <a href="<?= site_url('client/retrait') ?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 16 16">
+                        <path d="M8 1v14M1 8h14" stroke="white" stroke-width="2" />
+                    </svg>
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 16 16">
-                    <path d="M1 8h14" stroke="white" stroke-width="2"/>
-                </svg>
+                    Faire un dépôt
 
-                Faire un retrait
+                </a>
 
-            </a>
+                <a href="<?= site_url('client/retrait') ?>">
 
-            <a href="<?= site_url('client/transfert') ?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 16 16">
+                        <path d="M1 8h14" stroke="white" stroke-width="2" />
+                    </svg>
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 16 16">
-                    <path d="M3 5h10M9 1l4 4-4 4M13 11H3M7 15l-4-4 4-4" stroke="white" stroke-width="1.8" fill="none"/>
-                </svg>
+                    Faire un retrait
 
-                Faire un transfert
+                </a>
 
-            </a>
+                <a href="<?= site_url('client/transfert') ?>">
 
-            <a href="<?= site_url('client/historiques') ?>">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 16 16">
+                        <path d="M3 5h10M9 1l4 4-4 4M13 11H3M7 15l-4-4 4-4" stroke="white" stroke-width="1.8" fill="none" />
+                    </svg>
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 16 16">
-                    <path d="M8 3v5l3 2" stroke="white" stroke-width="2" fill="none"/>
-                    <circle cx="8" cy="8" r="6" stroke="white" stroke-width="2" fill="none"/>
-                </svg>
+                    Faire un transfert
 
-                Voir les historiques
+                </a>
 
-            </a>
+                <a href="<?= site_url('client/historiques') ?>">
 
-        </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 16 16">
+                        <path d="M8 3v5l3 2" stroke="white" stroke-width="2" fill="none" />
+                        <circle cx="8" cy="8" r="6" stroke="white" stroke-width="2" fill="none" />
+                    </svg>
 
-        <div class="logout">
+                    Voir les historiques
 
-            <a href="<?= site_url('/logout') ?>">
+                </a>
 
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 16 16">
-                    <path d="M6 2H2v12h4M10 12l4-4-4-4M4 8h10" stroke="white" stroke-width="2" fill="none"/>
-                </svg>
+            </div>
 
-                Déconnexion
+            <div class="logout">
 
-            </a>
+                <a href="<?= site_url('/logout') ?>">
 
-        </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white" viewBox="0 0 16 16">
+                        <path d="M6 2H2v12h4M10 12l4-4-4-4M4 8h10" stroke="white" stroke-width="2" fill="none" />
+                    </svg>
 
-    </aside>
+                    Déconnexion
 
-    <main class="content">
+                </a>
 
-        <div class="card">
+            </div>
 
-            <?= $this->renderSection('content') ?>
+        </aside>
 
-        </div>
+        <main class="content">
 
-    </main>
+            <div class="card">
 
-</div>
+                <?= $this->renderSection('content') ?>
+
+            </div>
+
+        </main>
+
+    </div>
 
 </body>
+
 </html>
